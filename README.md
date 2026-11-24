@@ -1,24 +1,30 @@
 # Arduino · Electrónica y Robótica
 
-Sitio interactivo de Arduino Uno con guía de Teoría, diagramas de conexión en
-cada tema y cada ejercicio, ejercitación autocorregible, simulación en
-Tinkercad y evaluaciones con envío cifrado al repo privado `inform`.
+Sitio de Arduino Uno con guía de Teoría, esquemas de conexión en cada tema,
+18 actividades con imágenes de circuitos reales para armar en Tinkercad,
+cuestionario con envío cifrado y evaluaciones con envío cifrado al repo
+privado `inform`.
 
 ## Estructura
 
 | Archivo | Para qué sirve |
 | --- | --- |
-| `index.html` | Portada: 18 ejercicios con imagen de conexión, cuestionario y entrega. |
+| `index.html` | Portada: 18 actividades con imagen de conexión, cuestionario y entrega. |
 | `guia/index.html` | Guía de Teoría por temas, con esquemas de conexión de cada componente. |
 | `tinkercad.html` | Ejercicios simulables en Tinkercad y alternativas para los que no. |
 | `evaluacion.html` | Evaluación general y práctica, sin corrección visible. |
 | `estilos.css` | Estilos compartidos. |
 | `app.js` | Navegación activa. |
-| `diagramas/*.svg` | Esquemas vectoriales de conexión usados en guía, ejercicios y Tinkercad. |
+| `imagenes/*.jpg` | Fotografías de circuitos usadas en las 18 actividades (Pexels License, sin atribución visible). |
+| `diagramas/*.svg` | Esquemas vectoriales de conexión usados en la guía y en Tinkercad. |
 | `diagramas/generar.py` | Generador de los SVG; ejecutar con `python diagramas/generar.py`. |
-| `ejercicios.js` | Correctores de la ejercitación y entrega. |
+| `ejercicios.js` | Actividades, cuestionario y entrega; no contiene editor ni corrector de sketch. |
 | `scripts/evaluacion.js` | Correctores internos de las evaluaciones. |
 | `scripts/entrega.js` | Cifrado RSA-OAEP + AES-GCM y POST a `ntfy.sh`. |
+
+Las imágenes de `imagenes/` son de Pexels y se usan bajo su licencia gratuita,
+que no exige atribución visible. Por eso el único crédito visible del sitio
+sigue siendo el pie: `Diseñado por la profesora Alejandra Moreira`.
 
 ## Temario
 
@@ -44,7 +50,7 @@ programa que se muestran en `tinkercad.html`.
 
 | ID | Origen | Corrección visible |
 | --- | --- | --- |
-| `arduino-portada` | `index.html` | Sí, por requisitos, antes de enviar |
+| `arduino-portada` | `index.html` | Solo del cuestionario, antes de enviar |
 | `arduino-general` | `evaluacion.html#general` | No |
 | `arduino-practica` | `evaluacion.html#practica` | No |
 

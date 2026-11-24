@@ -37,15 +37,15 @@
   <section id="fundamentos">
     <h2 class="seccion">Cómo trabajar en este sitio</h2>
     <div class="card">
-      <p class="consigna">Cada tema tiene tres momentos: <strong>leer la teoría y la conexión en la guía</strong>, <strong>armar el circuito que muestra cada imagen</strong> y <strong>resolver el ejercicio con corrección propia</strong>. No hay pistas desplegables ni soluciones escondidas: el objetivo es que pienses el sketch y verifiques por requisitos.</p>
-      <div class="concept"><strong>Simulación en Tinkercad.</strong> Las actividades marcadas como simulables se arman con los componentes indicados en <a href="tinkercad.html">la guía de Tinkercad</a>. La matriz 8x8 con MAX7219 y el sensor DHT11 no están en Tinkercad: para esos casos la imagen muestra la conexión real y el enunciado pide el programa.</div>
+      <p class="consigna">Cada tema tiene tres momentos: <strong>leer la teoría y la conexión en la guía</strong>, <strong>armar el circuito que muestra cada imagen</strong> y <strong>escribir el sketch en Tinkercad</strong>. No hay pistas desplegables ni soluciones escondidas: el objetivo es que pienses el programa y lo pruebes en la simulación.</p>
+      <div class="concept"><strong>Simulación en Tinkercad.</strong> Las actividades marcadas como simulables se arman con los componentes indicados en <a href="tinkercad.html">la guía de Tinkercad</a>. La matriz 8x8 con MAX7219 y el sensor DHT11 no están en Tinkercad: para esos casos la imagen muestra la conexión real y el enunciado da las consignas del programa.</div>
       <div class="nota"><strong>Seguridad eléctrica.</strong> En hardware real usá resistencias para los LEDs, nunca conectes un pin directamente a masa con el LED encendido, compartí masa entre módulos y respetá los límites de corriente de la placa.</div>
     </div>
   </section>
 
   <section id="ejercicios">
-    <h2 class="seccion">Ejercitación con corrección propia</h2>
-    <p class="consigna">18 actividades: 3 por módulo. Cada una muestra el enunciado y la imagen de la conexión electrónica que tenés que armar. Escribí el sketch en el cuadro y presioná <strong>Corregir</strong>: la corrección indica qué requisitos cumpliste y cuáles faltan.</p>
+    <h2 class="seccion">Actividades para armar en Tinkercad</h2>
+    <p class="consigna">18 actividades: 3 por módulo. Cada una muestra el enunciado y una imagen de referencia de la conexión electrónica; la conexión exacta está indicada debajo de la foto. Armá el circuito y escribí el sketch directamente en <a href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Tinkercad ↗</a>; en este sitio no hay cuadro de código ni corrección de sketch.</p>
 
     <h3>Digital · LED, botón y semáforo</h3>
     <div id="ej-digital"></div>
@@ -74,9 +74,9 @@
   </section>
 
   <section id="entrega">
-    <h2 class="seccion">Entrega de la ejercitación</h2>
+    <h2 class="seccion">Entrega del cuestionario</h2>
     <div class="card">
-      <p class="consigna">Al enviar, se corrige automáticamente y se guarda en el repositorio privado <code class="inline">inform</code>. Después de enviar no se puede modificar.</p>
+      <p class="consigna">Al enviar, se corrige el cuestionario de conceptos y se guarda en el repositorio privado <code class="inline">inform</code>. Los sketchs se realizan en Tinkercad. Después de enviar no se puede modificar.</p>
       <form id="form-entrega-ejercicios" class="form-eval">
         <label for="ent-nombre">Nombre</label>
         <input id="ent-nombre" name="nombre" autocomplete="given-name" required>
@@ -84,7 +84,7 @@
         <input id="ent-apellido" name="apellido" autocomplete="family-name" required>
         <label for="ent-curso">Curso</label>
         <input id="ent-curso" name="curso" required>
-        <button type="submit">Enviar ejercitación</button>
+        <button type="submit">Enviar cuestionario</button>
       </form>
       <p id="estado-entrega-ejercicios" class="estado-eval" role="status" aria-live="polite"></p>
     </div>

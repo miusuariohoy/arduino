@@ -198,17 +198,10 @@ figure.figura-circuito figcaption{
   border:1px solid var(--border);border-radius:12px;background:#fff;
   padding:1rem;margin:1rem 0;
 }
-.ejercicio.correcto{border-color:var(--ok);background:var(--ok-bg)}
 .nivel{
   display:inline-block;margin-left:.35rem;padding:.1rem .5rem;border-radius:999px;
   font-size:.72rem;font-weight:700;background:#dbeafe;color:#1d4ed8;
 }
-textarea.respuesta{
-  display:block;width:100%;min-height:150px;resize:vertical;
-  border:2px dashed #94a3b8;border-radius:10px;padding:.7rem;
-  background:#f8fafc;font-family:Consolas,"Courier New",monospace;font-size:.87rem;
-}
-textarea.respuesta:focus{outline:none;border-color:var(--arduino);background:#fff}
 .resultado{margin-top:.7rem;font-size:.88rem}
 .resultado:empty{display:none}
 .resultado .resumen{
