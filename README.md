@@ -59,9 +59,9 @@ Los tres IDs están registrados en `inform/scripts/guardar.js` dentro de
 
 El repo se publica con GitHub Pages desde la rama principal. La URL prevista es:
 
-- `https://miusuariohoy.github.io/Arduino/`
-- `https://miusuariohoy.github.io/Arduino/guia/`
-- `https://miusuariohoy.github.io/Arduino/evaluacion.html`
+- `https://miusuariohoy.github.io/arduino/`
+- `https://miusuariohoy.github.io/arduino/guia/`
+- `https://miusuariohoy.github.io/arduino/evaluacion.html`
 
 El canal de entrega, la clave pública y la materia están en
 `scripts/entrega.js`. La clave privada sigue solamente en `inform/claves/`.
