@@ -1,0 +1,234 @@
+:root{
+  --arduino:#00979c;
+  --arduino-dark:#00695c;
+  --naranja:#e8663d;
+  --ink:#1e293b;
+  --muted:#64748b;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --border:#cbd5e1;
+  --code:#0f172a;
+  --ok:#16a34a;
+  --ok-bg:#f0fdf4;
+  --bad:#b91c1c;
+  --bad-bg:#fee2e2;
+  --warn:#f59e0b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+  line-height:1.55;
+  color:var(--ink);
+  background:var(--bg);
+}
+header.hero{
+  background:linear-gradient(135deg,#00695c 0%,#00979c 55%,#e8663d 140%);
+  color:#fff;
+  padding:1.6rem 1rem 1.3rem;
+}
+header.hero h1{margin:0 0 .35rem;font-size:1.8rem}
+header.hero p{margin:.2rem 0;max-width:820px}
+header.hero .volver{margin-top:.7rem;font-size:.9rem}
+header.hero a{color:#fff;font-weight:700}
+nav.sumario,nav.nav-guias{
+  position:sticky;top:0;z-index:50;
+  display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;
+  padding:.55rem 1rem;
+  background:var(--arduino-dark);
+  box-shadow:0 2px 8px rgba(15,23,42,.18);
+}
+nav.nav-guias{position:static;top:auto;background:#e0f2f1;box-shadow:none}
+nav.sumario a,nav.nav-guias a{
+  text-decoration:none;font-weight:700;font-size:.9rem;
+  padding:.32rem .72rem;border-radius:999px;
+}
+nav.sumario a{color:#e0f2f1}
+nav.sumario a:hover{background:rgba(255,255,255,.18)}
+nav.nav-guias a{color:var(--arduino-dark);background:#fff;border:1px solid var(--border)}
+nav.nav-guias a:hover{background:var(--arduino);color:#fff}
+main{max-width:1040px;margin:0 auto;padding:1rem 1rem 3rem}
+section{scroll-margin-top:70px;margin-top:2rem}
+h2.seccion{
+  color:var(--arduino-dark);font-size:1.35rem;
+  margin:1.6rem 0 .8rem;padding-bottom:.4rem;
+  border-bottom:3px solid #b2dfdb;
+}
+h3{margin:.15rem 0 .55rem;font-size:1.05rem}
+p.consigna{margin:.3rem 0 .75rem;font-size:.96rem}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:1rem 1.1rem;margin:1rem 0;
+  box-shadow:0 1px 3px rgba(15,23,42,.06);
+}
+.card h3{color:var(--arduino-dark)}
+.concept{
+  background:#e0f2f1;border-left:4px solid var(--arduino);
+  padding:.7rem .9rem;border-radius:0 8px 8px 0;margin:.6rem 0;
+}
+.nota{background:#fff7ed;border-left:4px solid var(--naranja);padding:.7rem .9rem;border-radius:0 8px 8px 0}
+.okbox{background:var(--ok-bg);border-left:4px solid var(--ok);padding:.7rem .9rem;border-radius:0 8px 8px 0}
+code.inline{
+  background:#e2e8f0;padding:.1rem .35rem;border-radius:4px;
+  font-family:Consolas,"Courier New",monospace;font-size:.88em;
+}
+pre.codigo{
+  background:var(--code);color:#e2e8f0;border-radius:10px;
+  padding:.9rem 1rem;overflow-x:auto;font-size:.86rem;line-height:1.5;
+  font-family:Consolas,"Courier New",monospace;
+}
+pre.codigo .cm{color:#94a3b8;font-style:italic}
+pre.codigo .kw{color:#7dd3fc;font-weight:700}
+pre.codigo .st{color:#fde68a}
+pre.codigo .fn{color:#86efac}
+pre.codigo .nu{color:#fca5a5}
+.lista-codigo{margin:.4rem 0;padding-left:1.2rem}
+.lista-codigo li{margin:.3rem 0}
+/* ---------- Laboratorio ---------- */
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem}
+.tabs button{
+  border:1px solid var(--border);background:#fff;color:var(--ink);
+  border-radius:999px;padding:.35rem .8rem;cursor:pointer;font-weight:700;font-size:.88rem;
+}
+.tabs button.activo{background:var(--arduino);border-color:var(--arduino);color:#fff}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){.lab-grid{grid-template-columns:1fr}}
+.lab-col{min-width:0}
+textarea.codigo{
+  width:100%;min-height:310px;resize:vertical;
+  background:#0f172a;color:#e2e8f0;border:2px solid #334155;border-radius:10px;
+  padding:.8rem;font-family:Consolas,"Courier New",monospace;
+  font-size:.86rem;line-height:1.5;tab-size:2;
+}
+textarea.codigo:focus{outline:none;border-color:var(--arduino)}
+.acciones{display:flex;gap:.5rem;flex-wrap:wrap;margin:.7rem 0}
+button.accion{
+  border:0;border-radius:8px;padding:.45rem .85rem;cursor:pointer;
+  font-weight:700;font-size:.88rem;
+}
+button.primaria{background:var(--arduino);color:#fff}
+button.primaria:hover{background:var(--arduino-dark)}
+button.secundaria{background:#e2e8f0;color:#334155}
+button.secundaria:hover{background:#cbd5e1}
+button.alerta{background:#fee2e2;color:#991b1b}
+.sim-estado{
+  font-size:.88rem;font-weight:700;min-height:1.3em;margin:.3rem 0;
+  color:var(--arduino-dark);
+}
+.sim-estado.error{color:var(--bad)}
+.controles-sim{
+  display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;
+  background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:.6rem;
+  font-size:.86rem;
+}
+.controles-sim label{display:flex;flex-direction:column;gap:.2rem;min-width:130px}
+.controles-sim input[type="range"]{width:100%}
+.board{
+  background:linear-gradient(160deg,#0d7c82,#00695c);
+  border-radius:12px;padding:.8rem;color:#fff;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.12);
+}
+.board h4{margin:.1rem 0 .6rem;text-align:center;letter-spacing:.12em;font-size:.8rem}
+.fila-pines{display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;margin-bottom:.55rem}
+.pin{
+  min-width:47px;text-align:center;font-size:.72rem;font-weight:700;
+  background:rgba(0,0,0,.22);border-radius:6px;padding:.3rem .2rem;
+}
+.pin span{
+  display:block;width:14px;height:14px;border-radius:50%;
+  margin:.25rem auto 0;background:#b7e4e7;border:2px solid rgba(255,255,255,.7);
+}
+.pin.encendido span{background:#fde047;box-shadow:0 0 10px #fde047}
+.pin.pwm span{background:#fb923c;box-shadow:0 0 8px #fb923c}
+.monitor{
+  background:#020617;color:#86efac;border-radius:10px;padding:.7rem .8rem;
+  min-height:140px;max-height:190px;overflow:auto;
+  font-family:Consolas,"Courier New",monospace;font-size:.82rem;
+  white-space:pre-wrap;margin-top:.7rem;
+}
+.paneles{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+@media(max-width:820px){.paneles{grid-template-columns:1fr}}
+.lcd{
+  display:grid;grid-template-columns:repeat(16,1fr);
+  background:#8db6a5;padding:.35rem;gap:1px;border-radius:6px;
+  border:3px solid #54776a;
+}
+.lcd span{
+  background:#a9c7b6;color:#17342b;min-height:24px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Consolas,monospace;font-size:.8rem;
+}
+.lcd span.lleno{background:#b9d8c4;font-weight:700}
+.matriz{
+  display:grid;grid-template-columns:repeat(8,1fr);gap:2px;
+  background:#111827;padding:.4rem;border-radius:8px;width:230px;max-width:100%;
+}
+.matriz span{aspect-ratio:1;background:#1f2937;border-radius:2px}
+.matriz span.lleno{background:#ef4444;box-shadow:0 0 7px #ef4444}
+.servo-bar{height:16px;background:#e2e8f0;border-radius:999px;position:relative;overflow:hidden}
+.servo-bar i{display:block;height:100%;background:var(--naranja)}
+.servo-valor{font-weight:700;font-size:.9rem}
+.etiqueta{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+/* ---------- Ejercicios ---------- */
+.ejercicio{
+  border:1px solid var(--border);border-radius:12px;background:#fff;
+  padding:1rem;margin:1rem 0;
+}
+.ejercicio.correcto{border-color:var(--ok);background:var(--ok-bg)}
+.nivel{
+  display:inline-block;margin-left:.35rem;padding:.1rem .5rem;border-radius:999px;
+  font-size:.72rem;font-weight:700;background:#dbeafe;color:#1d4ed8;
+}
+textarea.respuesta{
+  display:block;width:100%;min-height:150px;resize:vertical;
+  border:2px dashed #94a3b8;border-radius:10px;padding:.7rem;
+  background:#f8fafc;font-family:Consolas,"Courier New",monospace;font-size:.87rem;
+}
+textarea.respuesta:focus{outline:none;border-color:var(--arduino);background:#fff}
+.resultado{margin-top:.7rem;font-size:.88rem}
+.resultado:empty{display:none}
+.resultado .resumen{
+  border-left:4px solid var(--ok);background:var(--ok-bg);
+  padding:.45rem .7rem;border-radius:0 8px 8px 0;font-weight:700;
+}
+.resultado .resumen.parcial{border-color:var(--warn);background:#fffbeb}
+.resultado ul{margin:.4rem 0 0;padding-left:1.2rem}
+.resultado li{margin:.12rem 0}
+.si{color:#15803d;font-weight:700}
+.no,.mal{color:var(--bad);font-weight:700}
+.quiz-pregunta{
+  border:1px solid var(--border);border-radius:10px;padding:.7rem .85rem;
+  margin:.7rem 0;background:#fff;
+}
+.quiz-pregunta p{margin:.1rem 0 .4rem;font-weight:600}
+.quiz-pregunta label{display:block;font-size:.92rem;padding:.15rem 0;cursor:pointer}
+.quiz-feedback{font-size:.86rem;margin-top:.3rem;min-height:1.1em}
+/* ---------- Evaluaciones ---------- */
+.form-eval{
+  display:grid;gap:.5rem;max-width:620px;
+  border:1px solid var(--border);border-radius:10px;padding:.9rem;background:#fff;
+}
+.form-eval label{font-weight:700;font-size:.9rem}
+.form-eval input{
+  border:1px solid var(--border);border-radius:8px;padding:.5rem .65rem;font:inherit;
+}
+.form-eval button{
+  border:0;border-radius:8px;padding:.55rem .9rem;background:var(--arduino);
+  color:#fff;font-weight:700;cursor:pointer;
+}
+.form-eval button:disabled{background:#94a3b8;cursor:not-allowed}
+.estado-eval{font-size:.92rem;font-weight:700;min-height:1.2em}
+.estado-eval.ok{color:#15803d}
+.estado-eval.error{color:var(--bad)}
+.eval-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:.9rem;margin:.8rem 0;
+}
+.eval-card h3{color:var(--arduino-dark);font-size:1rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem}
+footer p{margin:.2rem 0}
+@media(max-width:600px){
+  header.hero h1{font-size:1.35rem}
+  .paneles{grid-template-columns:1fr}
+}

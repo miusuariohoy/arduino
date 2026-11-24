@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Guía de Teoría de Arduino: sketch, digital, analógico, LCD, matriz, sensores y robótica.">
+<title>Guía de Teoría · Arduino</title>
+<link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Guía de Teoría · Arduino Uno</h1>
+  <p>Conceptos esenciales de programación y electrónica aplicados a Arduino, con ejemplos que podés probar en el laboratorio virtual.</p>
+  <p class="volver"><a href="../index.html">← Volver a la ejercitación</a></p>
+</header>
+<nav class="nav-guias" aria-label="Temas">
+  <a href="#sketch">Sketch</a>
+  <a href="#digital">Digital</a>
+  <a href="#analogico">Analógico</a>
+  <a href="#lcd">LCD</a>
+  <a href="#matriz">Matriz</a>
+  <a href="#sensores">Sensores</a>
+  <a href="#robotica">Robótica</a>
+</nav>
+<main>
+  <section id="sketch">
+    <h2 class="seccion">1. El sketch Arduino</h2>
+    <div class="card">
+      <p>Un <strong>sketch</strong> es el programa que se carga en la placa. Toda estructura mínima tiene dos funciones: <code class="inline">setup()</code>, que se ejecuta una sola vez al arrancar, y <code class="inline">loop()</code>, que se repite mientras la placa esté encendida.</p>
+      <pre class="codigo"><span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(<span class="nu">13</span>, OUTPUT);
+  Serial.<span class="fn">begin</span>(<span class="nu">9600</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  digitalWrite(<span class="nu">13</span>, HIGH);
+  <span class="fn">delay</span>(<span class="nu">500</span>);
+  digitalWrite(<span class="nu">13</span>, LOW);
+  <span class="fn">delay</span>(<span class="nu">500</span>);
+}</pre>
+      <ul class="lista-codigo">
+        <li><code class="inline">pinMode(pin, modo)</code>: define si el pin es <code class="inline">INPUT</code>, <code class="inline">OUTPUT</code> o <code class="inline">INPUT_PULLUP</code>.</li>
+        <li><code class="inline">delay(ms)</code>: pausa el programa en milisegundos.</li>
+        <li><code class="inline">Serial.begin(9600)</code>: abre el puerto serie para el monitor.</li>
+        <li><code class="inline">Serial.print()</code> y <code class="inline">Serial.println()</code>: envían datos al monitor; la segunda agrega salto de línea.</li>
+      </ul>
+      <div class="concept">Tipos habituales: <code class="inline">int</code> para enteros, <code class="inline">float</code> para decimales, <code class="inline">bool</code> para verdadero/falso y <code class="inline">char</code> para caracteres.</div>
+    </div>
+  </section>
+
+  <section id="digital">
+    <h2 class="seccion">2. Electrónica digital</h2>
+    <div class="card">
+      <p>Las señales digitales tienen dos estados: <code class="inline">HIGH</code> (nivel alto, cerca de 5 V) y <code class="inline">LOW</code> (nivel bajo, 0 V). Con <code class="inline">digitalWrite()</code> escribimos una salida; con <code class="inline">digitalRead()</code> leemos una entrada.</p>
+      <pre class="codigo"><span class="kw">void</span> <span class="fn">setup</span>() {
+  pinMode(<span class="nu">2</span>, INPUT_PULLUP);
+  pinMode(<span class="nu">13</span>, OUTPUT);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> boton = <span class="fn">digitalRead</span>(<span class="nu">2</span>);
+  <span class="kw">if</span> (boton == <span class="nu">0</span>) {
+    digitalWrite(<span class="nu">13</span>, HIGH);
+  } <span class="kw">else</span> {
+    digitalWrite(<span class="nu">13</span>, LOW);
+  }
+}</pre>
+      <div class="nota"><strong>INPUT_PULLUP.</strong> Activa una resistencia interna: el pin queda en <code class="inline">HIGH</code> cuando el botón está suelto y pasa a <code class="inline">LOW</code> al presionarse. Por eso la comparación es con 0.</div>
+      <p>Para un semáforo con tres LEDs se enciende uno y se apagan los otros dos. Nunca deben quedar dos salidas altas al mismo tiempo si representamos estados excluyentes.</p>
+    </div>
+  </section>
+
+  <section id="analogico">
+    <h2 class="seccion">3. Electrónica analógica y PWM</h2>
+    <div class="card">
+      <p><code class="inline">analogRead()</code> lee un voltaje continuo y devuelve un valor entre 0 y 1023 porque el conversor es de 10 bits. <code class="inline">map()</code> transforma ese rango a otro más cómodo.</p>
+      <pre class="codigo"><span class="kw">int</span> pot = <span class="fn">analogRead</span>(A0);
+<span class="kw">int</span> brillo = <span class="fn">map</span>(pot, <span class="nu">0</span>, <span class="nu">1023</span>, <span class="nu">0</span>, <span class="nu">255</span>);
+<span class="fn">analogWrite</span>(<span class="nu">9</span>, brillo);</pre>
+      <p><code class="inline">analogWrite()</code> no genera un voltaje continuo real: usa <strong>PWM</strong>, una señal cuadrada con ciclo activo variable. En los pines 3, 5, 6, 9, 10 y 11 de la Uno permite controlar brillo o velocidad.</p>
+      <div class="concept"><code class="inline">constrain(valor, minimo, maximo)</code> limita una lectura para que no se salga del rango esperado. Es útil antes de aplicar <code class="inline">analogWrite()</code>.</div>
+    </div>
+  </section>
+
+  <section id="lcd">
+    <h2 class="seccion">4. Pantalla LCD 16x2</h2>
+    <div class="card">
+      <p>Una LCD de 16 columnas y 2 filas muestra caracteres en posiciones fijas. Se inicializa con <code class="inline">lcd.begin(16, 2)</code>. Las filas se numeran 0 y 1; las columnas, de 0 a 15.</p>
+      <pre class="codigo">lcd.<span class="fn">begin</span>(<span class="nu">16</span>, <span class="nu">2</span>);
+lcd.<span class="fn">print</span>(<span class="st">"Hola Arduino"</span>);
+lcd.<span class="fn">setCursor</span>(<span class="nu">0</span>, <span class="nu">1</span>);
+lcd.<span class="fn">print</span>(<span class="st">"LCD lista"</span>);</pre>
+      <p><code class="inline">lcd.setCursor(columna, fila)</code>: primero la columna, después la fila. <code class="inline">lcd.clear()</code> borra toda la pantalla y vuelve el cursor a la posición inicial.</p>
+      <div class="nota">En hardware real, el contraste se ajusta con un potenciómetro conectado al pin VO. Si no se ve texto, girá el potenciómetro antes de cambiar el cableado.</div>
+    </div>
+  </section>
+
+  <section id="matriz">
+    <h2 class="seccion">5. Matriz LED 8x8</h2>
+    <div class="card">
+      <p>La matriz tiene 64 LEDs organizados en 8 filas y 8 columnas. Cada punto se enciende con coordenadas <code class="inline">(x, y)</code>, donde <code class="inline">x</code> es la columna y <code class="inline">y</code> la fila, ambas de 0 a 7.</p>
+      <pre class="codigo">matriz.<span class="fn">clear</span>();
+<span class="kw">for</span> (<span class="kw">int</span> x = <span class="nu">0</span>; x &lt; <span class="nu">8</span>; x = x + <span class="nu">1</span>) {
+  matriz.<span class="fn">setPoint</span>(x, <span class="nu">3</span>, <span class="nu">1</span>);
+  <span class="fn">delay</span>(<span class="nu">100</span>);
+  matriz.<span class="fn">clear</span>();
+}</pre>
+      <p>Una animación es una sucesión de <strong>frames</strong>. Cada frame limpia la matriz, dibuja una figura y espera un breve tiempo. Con módulos MAX7219 reales se usa una librería equivalente para enviar los mismos puntos por SPI.</p>
+    </div>
+  </section>
+
+  <section id="sensores">
+    <h2 class="seccion">6. Sensores</h2>
+    <div class="card">
+      <p>Un sensor convierte una magnitud física en una señal eléctrica. En Arduino, los sensores analógicos se leen con <code class="inline">analogRead()</code> y los digitales con <code class="inline">digitalRead()</code>.</p>
+      <ul class="lista-codigo">
+        <li><strong>LDR:</strong> resistencia que cambia con la luz; da lecturas altas con más iluminación en el simulador.</li>
+        <li><strong>DHT:</strong> temperatura y humedad; en el laboratorio se representa como una lectura proporcional en <code class="inline">A2</code>.</li>
+        <li><strong>HC-SR04:</strong> distancia por ultrasonido; en el simulador se lee como centímetros en <code class="inline">A3</code>.</li>
+      </ul>
+      <p>Un <strong>umbral</strong> es un valor límite: si la lectura lo supera o cae por debajo, se activa una acción. Para reducir ruido se puede <strong>promediar</strong> varias lecturas:</p>
+      <pre class="codigo"><span class="kw">int</span> suma = <span class="nu">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nu">0</span>; i &lt; <span class="nu">3</span>; i = i + <span class="nu">1</span>) {
+  suma = suma + <span class="fn">analogRead</span>(A3);
+}
+<span class="kw">int</span> promedio = suma / <span class="nu">3</span>;</pre>
+    </div>
+  </section>
+
+  <section id="robotica">
+    <h2 class="seccion">7. Robótica: servo, motor y estados</h2>
+    <div class="card">
+      <p>Un <strong>servo</strong> se mueve a una posición angular: <code class="inline">servo.write(90)</code> lo coloca en 90°. Un <strong>motor con driver</strong> se controla con una señal de dirección y una señal PWM de velocidad.</p>
+      <pre class="codigo">servo.<span class="fn">attach</span>(<span class="nu">9</span>);
+servo.<span class="fn">write</span>(<span class="nu">45</span>);
+motor.<span class="fn">write</span>(<span class="nu">200</span>);</pre>
+      <p>Un robot sencillo puede describirse con una <strong>máquina de estados</strong>: cada estado define una acción y una condición para pasar a otro. Por ejemplo: estado 0 = esperar, estado 1 = avanzar. Usar una variable <code class="inline">int estado</code> evita encadenar condiciones confusas.</p>
+      <div class="concept"><strong>Proyecto integrador:</strong> leer un sensor, decidir con un umbral, mostrar el valor en la LCD, mover un servo y avisar con un LED. Ese patrón —entrada, decisión, salida y comunicación— aparece en casi todos los sistemas robóticos.</div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Diseñado por la profesora Alejandra Moreira</p>
+</footer>
+<script src="../app.js"></script>
+</body>
+</html>

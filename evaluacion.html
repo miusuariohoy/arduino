@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Evaluaciones de Arduino y robótica con envío cifrado y sin corrección visible para el alumno.">
+<title>Evaluaciones · Arduino y Robótica</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Evaluaciones · Arduino y Robótica</h1>
+  <p>Dos evaluaciones independientes. No se muestra la corrección ni la nota: se calcula internamente y se envía al repositorio privado <code class="inline">inform</code>.</p>
+  <p class="volver"><a href="index.html">← Volver a la ejercitación</a> · <a href="guia/index.html">Guía de Teoría</a></p>
+</header>
+<nav class="sumario" aria-label="Evaluaciones">
+  <a href="#general">Evaluación general</a>
+  <a href="#practica">Evaluación práctica</a>
+</nav>
+<main>
+  <section id="general">
+    <h2 class="seccion">Evaluación general</h2>
+    <p class="consigna">Seis actividades de código y seis preguntas de opción múltiple. Escribí cada sketch en su cuadro y elegí una respuesta por pregunta.</p>
+    <form class="form-eval" data-form-eval="arduino-general">
+      <label>Nombre <input name="nombre" autocomplete="given-name" required></label>
+      <label>Apellido <input name="apellido" autocomplete="family-name" required></label>
+      <label>Curso <input name="curso" required></label>
+      <button type="submit">Enviar evaluación general</button>
+    </form>
+    <p class="estado-eval" data-estado-eval="arduino-general" role="status" aria-live="polite"></p>
+    <div id="evg-actividades"></div>
+    <div class="card">
+      <h3>Opción múltiple</h3>
+      <div id="evg-quiz"></div>
+    </div>
+  </section>
+
+  <section id="practica">
+    <h2 class="seccion">Evaluación práctica</h2>
+    <p class="consigna">Cuatro actividades de implementación y seis consignas breves de código. Cada consigna se corrige por separado, pero el alumno no ve el resultado.</p>
+    <form class="form-eval" data-form-eval="arduino-practica">
+      <label>Nombre <input name="nombre" autocomplete="given-name" required></label>
+      <label>Apellido <input name="apellido" autocomplete="family-name" required></label>
+      <label>Curso <input name="curso" required></label>
+      <button type="submit">Enviar evaluación práctica</button>
+    </form>
+    <p class="estado-eval" data-estado-eval="arduino-practica" role="status" aria-live="polite"></p>
+    <div id="evp-actividades"></div>
+    <div class="card">
+      <h3>Consignas breves</h3>
+      <div id="evp-consignas"></div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Diseñado por la profesora Alejandra Moreira</p>
+</footer>
+<script src="scripts/entrega.js"></script>
+<script src="scripts/evaluacion.js"></script>
+</body>
+</html>
