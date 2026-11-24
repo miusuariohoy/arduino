@@ -47,7 +47,7 @@
           <tr><td><code class="inline">ard-rob3</code></td><td>Robot con dos estados</td><td>Pushbutton + Micro Servo</td><td>Botón D2 con INPUT_PULLUP; servo en D9.</td></tr>
         </tbody>
       </table></div>
-      <div class="concept"><strong>TMP36 para la actividad 5.2:</strong> en Tinkercad reemplazá la división <code class="inline">lectura / 10.0</code> por <code class="inline">(lectura * 5.0 / 1023 - 0.5) * 100</code>. Así obtenés grados Celsius a partir del sensor analógico disponible.</div>
+      <div class="concept"><strong>TMP36 para la actividad 5.2:</strong> en Tinkercad no cargues la librería <code class="inline">DHT.h</code>. Usá el TMP36 en A2, leé con <code class="inline">analogRead(A2)</code> y convertí con <code class="inline">(lectura * 5.0 / 1023 - 0.5) * 100</code> para obtener grados Celsius.</div>
     </div>
   </section>
 
