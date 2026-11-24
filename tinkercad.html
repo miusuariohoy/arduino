@@ -53,11 +53,12 @@
 
   <section id="no">
     <h2 class="seccion">Los que no se pueden hacer en Tinkercad</h2>
-    <p class="consigna">Tinkercad no incluye el módulo de matriz 8x8 con MAX7219 ni el sensor DHT11. Para estos casos, el simulador de este sitio sirve para entender la lógica y acá tenés la conexión y el programa para llevarlos a hardware real.</p>
+    <p class="consigna">Tinkercad no incluye el módulo de matriz 8x8 con MAX7219 ni el sensor DHT11. Para estos casos tenés el esquema de conexión y el programa para llevarlos a hardware real; las actividades también muestran la imagen del circuito.</p>
 
     <div class="card">
       <h3>Matriz 8x8 · actividades <code class="inline">ard-mat1</code>, <code class="inline">ard-mat2</code> y <code class="inline">ard-mat3</code></h3>
-      <p>El módulo MAX7219 usa comunicación SPI con la librería <code class="inline">LedControl</code>, que no está disponible en Tinkercad. En el simulador de este sitio se usa el objeto <code class="inline">matriz</code>; en hardware real el código equivalente es:</p>
+      <p>El módulo MAX7219 usa comunicación SPI con la librería <code class="inline">LedControl</code>, que no está disponible en Tinkercad. En hardware real el código de las actividades 4.1 a 4.3 es:</p>
+      <figure class="figura-circuito"><img src="diagramas/matriz.svg" alt="Conexión de la matriz 8x8 con MAX7219 a Arduino Uno"><figcaption>DIN en D11, CS en D10, CLK en D13, más 5 V y GND.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin módulo</th><th>Conexión Arduino</th></tr></thead>
         <tbody>
@@ -90,6 +91,7 @@ void loop() {
     <div class="card">
       <h3>DHT11 real · actividad <code class="inline">ard-sen2</code></h3>
       <p>El DHT11 entrega temperatura y humedad por un pin de datos digital. Necesita la librería <code class="inline">DHT.h</code>, que Tinkercad no permite cargar. En Tinkercad se reemplaza por TMP36; en hardware real se conecta así:</p>
+      <figure class="figura-circuito"><img src="diagramas/dht.svg" alt="Conexión del sensor DHT11 con DATA en D2 y resistencia pull-up"><figcaption>VCC a 5 V, GND y DATA en D2 con resistencia pull-up de 4,7 kΩ.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin DHT11</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -129,7 +131,7 @@ void loop() {
         <li>Presioná <strong>Iniciar simulación</strong>. Abrí el <strong>Monitor serie</strong> cuando el ejercicio use <code class="inline">Serial.print()</code>.</li>
         <li>Cuando funcione, armá el circuito real con la tabla de conexiones de la guía y cargá el mismo sketch desde el IDE de Arduino.</li>
       </ol>
-      <div class="nota"><strong>Diferencias a tener en cuenta:</strong> la simulación puede ir más lenta que el hardware real, los botones no rebota como los físicos y las librerías disponibles son limitadas. Por eso la matriz y el DHT11 se trabajan en el simulador de este sitio o con componentes reales.</div>
+      <div class="nota"><strong>Diferencias a tener en cuenta:</strong> la simulación puede ir más lenta que el hardware real, los botones no rebote como los físicos y las librerías disponibles son limitadas. Por eso la matriz y el DHT11 se trabajan con componentes reales siguiendo los esquemas de conexión.</div>
     </div>
   </section>
 </main>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Botón con INPUT_PULLUP en D2">
+
+  <style>
+    text{font-family:"Segoe UI",Arial,sans-serif;fill:#1e293b}
+    .titulo{font-size:20px;font-weight:700;fill:#00695c}
+    .pin{font-size:13px;font-weight:700;fill:#f8fafc}
+    .etq{font-size:13px}
+    .small{font-size:11px;fill:#64748b}
+    .board{font-size:16px;font-weight:700;fill:#e0f2f1;letter-spacing:1px}
+  </style>
+
+  <rect width="640" height="260" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="32" y="36" class="titulo">Botón con INPUT_PULLUP en D2</text>
+  <text x="608" y="36" text-anchor="end" class="small">Rojo = 5 V · Negro = GND · Naranja = señal</text>
+<rect x="24" y="52" width="210" height="170" rx="18" fill="#00979c" stroke="#00695c" stroke-width="3"/><text x="129" y="82" text-anchor="middle" class="board">ARDUINO UNO</text><rect x="42" y="96" width="168" height="104" rx="8" fill="#e0f2f1" opacity=".35"/><circle cx="234" cy="130" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="135" text-anchor="end" class="pin">D2</text><circle cx="234" cy="200" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="205" text-anchor="end" class="pin">GND</text><circle cx="234" cy="100" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="105" text-anchor="end" class="pin">D13</text>
+<polyline points="241,130 380,130" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="416" y="110" width="68" height="40" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/><circle cx="428" cy="130" r="5" fill="#94a3b8"/><circle cx="472" cy="130" r="5" fill="#94a3b8"/><path d="M428 130 L460 118" stroke="#e8663d" stroke-width="3"/><text x="450" y="176" text-anchor="middle" class="etq">Pulsador</text><polyline points="450,150 450,200 241,200" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,100 330,100" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="330" y="89" width="64" height="22" rx="5" fill="#ffffff" stroke="#334155" stroke-width="2"/><text x="362" y="105" text-anchor="middle" class="etq">220 Ω</text><polyline points="394,100 440,100" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="470" cy="100" r="17" fill="#22c55e" opacity=".85" stroke="#991b1b" stroke-width="2"/><path d="M463 107 L477 93 M471 92 L478 92 L478 99" stroke="#ffffff" stroke-width="2" fill="none"/><text x="470" y="138" text-anchor="middle" class="etq">LED D13</text><polyline points="470,117 540,117 540,200 470,200" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><text x="450" y="232" text-anchor="middle" class="small">Sin resistencia externa: INPUT_PULLUP</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Servo SG90 en D9">
+
+  <style>
+    text{font-family:"Segoe UI",Arial,sans-serif;fill:#1e293b}
+    .titulo{font-size:20px;font-weight:700;fill:#00695c}
+    .pin{font-size:13px;font-weight:700;fill:#f8fafc}
+    .etq{font-size:13px}
+    .small{font-size:11px;fill:#64748b}
+    .board{font-size:16px;font-weight:700;fill:#e0f2f1;letter-spacing:1px}
+  </style>
+
+  <rect width="640" height="260" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="32" y="36" class="titulo">Servo SG90 en D9</text>
+  <text x="608" y="36" text-anchor="end" class="small">Rojo = 5 V · Negro = GND · Naranja = señal</text>
+<rect x="24" y="52" width="210" height="170" rx="18" fill="#00979c" stroke="#00695c" stroke-width="3"/><text x="129" y="82" text-anchor="middle" class="board">ARDUINO UNO</text><rect x="42" y="96" width="168" height="104" rx="8" fill="#e0f2f1" opacity=".35"/><circle cx="234" cy="130" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="135" text-anchor="end" class="pin">D9</text><circle cx="234" cy="200" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="205" text-anchor="end" class="pin">GND</text><circle cx="234" cy="80" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="85" text-anchor="end" class="pin">5V</text>
+<polyline points="241,80 430,80 430,112" fill="none" stroke="#dc2626" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,200 430,200 430,160" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,130 430,130" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="490" cy="135" r="34" fill="#e8663d" stroke="#9a3412" stroke-width="2"/><circle cx="490" cy="135" r="11" fill="#fed7aa"/><path d="M490 125 L526 105 M526 105 L536 117" stroke="#334155" stroke-width="4" fill="none"/><text x="490" y="195" text-anchor="middle" class="etq">Micro servo SG90</text><text x="490" y="213" text-anchor="middle" class="small">Señal D9 · 5 V · GND</text>
+</svg>

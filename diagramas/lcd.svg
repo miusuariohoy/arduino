@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Pantalla LCD 16x2">
+
+  <style>
+    text{font-family:"Segoe UI",Arial,sans-serif;fill:#1e293b}
+    .titulo{font-size:20px;font-weight:700;fill:#00695c}
+    .pin{font-size:13px;font-weight:700;fill:#f8fafc}
+    .etq{font-size:13px}
+    .small{font-size:11px;fill:#64748b}
+    .board{font-size:16px;font-weight:700;fill:#e0f2f1;letter-spacing:1px}
+  </style>
+
+  <rect width="640" height="260" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="32" y="36" class="titulo">Pantalla LCD 16x2</text>
+  <text x="608" y="36" text-anchor="end" class="small">Rojo = 5 V · Negro = GND · Naranja = señal</text>
+<rect x="24" y="52" width="210" height="170" rx="18" fill="#00979c" stroke="#00695c" stroke-width="3"/><text x="129" y="82" text-anchor="middle" class="board">ARDUINO UNO</text><rect x="42" y="96" width="168" height="104" rx="8" fill="#e0f2f1" opacity=".35"/><circle cx="234" cy="78" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="83" text-anchor="end" class="pin">D12</text><circle cx="234" cy="100" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="105" text-anchor="end" class="pin">D11</text><circle cx="234" cy="122" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="127" text-anchor="end" class="pin">D5</text><circle cx="234" cy="144" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="149" text-anchor="end" class="pin">D4</text><circle cx="234" cy="166" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="171" text-anchor="end" class="pin">D3</text><circle cx="234" cy="188" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="193" text-anchor="end" class="pin">D2</text><circle cx="234" cy="212" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="217" text-anchor="end" class="pin">GND</text><circle cx="234" cy="62" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="67" text-anchor="end" class="pin">5V</text>
+<polyline points="241,78 330,78 330,96 350,96" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,100 350,100" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,122 350,122" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,144 350,144" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,166 350,166" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,188 350,188" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,212 350,212" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,62 350,62" fill="none" stroke="#dc2626" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="350" y="70" width="180" height="90" rx="6" fill="#a9c7b6" stroke="#54776a" stroke-width="3"/><rect x="362" y="82" width="156" height="64" rx="3" fill="#b9d8c4" stroke="#54776a"/><text x="440" y="122" text-anchor="middle" class="etq">LCD 16x2</text><text x="440" y="182" text-anchor="middle" class="etq">RS 12 · E 11 · D4-D7 = 5,4,3,2</text>
+</svg>

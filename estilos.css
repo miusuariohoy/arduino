@@ -183,6 +183,16 @@ a.enlace-tink{
   padding:.45rem .85rem;border-radius:999px;
 }
 a.enlace-tink:hover{background:var(--arduino-dark)}
+/* ---------- Diagramas de conexión ---------- */
+figure.figura-circuito{
+  margin:.9rem 0;padding:.6rem;background:#ffffff;
+  border:1px solid var(--border);border-radius:12px;
+}
+figure.figura-circuito img{display:block;width:100%;max-width:640px;height:auto;margin:0 auto}
+figure.figura-circuito figcaption{
+  margin-top:.45rem;text-align:center;font-size:.85rem;color:var(--muted);
+}
+.ejercicio figure.figura-circuito{margin:.7rem 0}
 /* ---------- Ejercicios ---------- */
 .ejercicio{
   border:1px solid var(--border);border-radius:12px;background:#fff;

@@ -1,21 +1,21 @@
 # Arduino · Electrónica y Robótica
 
-Sitio interactivo de Arduino Uno con guía de Teoría, laboratorio virtual,
-ejercitación autocorregible y evaluaciones con envío cifrado al repo privado
-`inform`.
+Sitio interactivo de Arduino Uno con guía de Teoría, diagramas de conexión en
+cada tema y cada ejercicio, ejercitación autocorregible, simulación en
+Tinkercad y evaluaciones con envío cifrado al repo privado `inform`.
 
 ## Estructura
 
 | Archivo | Para qué sirve |
 | --- | --- |
-| `index.html` | Portada: laboratorio, 18 ejercicios, cuestionario y entrega. |
-| `guia/index.html` | Guía de Teoría por temas, con teoría y conexión de cada componente. |
+| `index.html` | Portada: 18 ejercicios con imagen de conexión, cuestionario y entrega. |
+| `guia/index.html` | Guía de Teoría por temas, con esquemas de conexión de cada componente. |
 | `tinkercad.html` | Ejercicios simulables en Tinkercad y alternativas para los que no. |
 | `evaluacion.html` | Evaluación general y práctica, sin corrección visible. |
 | `estilos.css` | Estilos compartidos. |
 | `app.js` | Navegación activa. |
-| `laboratorio.js` | Interfaz del Arduino virtual. |
-| `sim/arduino.js` | Intérprete didáctico del subconjunto de Arduino. |
+| `diagramas/*.svg` | Esquemas vectoriales de conexión usados en guía, ejercicios y Tinkercad. |
+| `diagramas/generar.py` | Generador de los SVG; ejecutar con `python diagramas/generar.py`. |
 | `ejercicios.js` | Correctores de la ejercitación y entrega. |
 | `scripts/evaluacion.js` | Correctores internos de las evaluaciones. |
 | `scripts/entrega.js` | Cifrado RSA-OAEP + AES-GCM y POST a `ntfy.sh`. |
@@ -33,17 +33,12 @@ ejercitación autocorregible y evaluaciones con envío cifrado al repo privado
 
 La página `tinkercad.html` marca qué actividades se pueden simular en Tinkercad Circuits y, para la matriz 8x8 y el DHT11, da la conexión y el programa para hardware real.
 
-## Simulador
+## Simulación
 
-Es un **intérprete didáctico**, no un compilador de C++. Ejecuta un subconjunto
-seguro: declaraciones y asignaciones, `if / else`, `for`, `while`,
-`pinMode`, `digitalWrite`, `digitalRead`, `analogRead`, `analogWrite`, `map`,
-`constrain`, `delay`, `Serial`, `lcd`, `matriz`, `servo` y `motor`. Incluye
-límite de pasos para detectar bucles infinitos y ejecución paso a paso.
-
-Los escenarios disponibles son digital, analógico, LCD, matriz, sensores y
-robótica. Los controles cambian las entradas del sketch y el monitor serie
-muestra la salida.
+La simulación se hace en **Tinkercad Circuits** para las actividades
+compatibles. La matriz 8x8 con MAX7219 y el sensor DHT11 no están disponibles
+allí: esos ejercicios se resuelven con hardware real siguiendo el esquema y el
+programa que se muestran en `tinkercad.html`.
 
 ## IDs de envío
 
@@ -66,6 +61,7 @@ El repo se publica con GitHub Pages desde la rama principal. La URL prevista es:
 - `https://miusuariohoy.github.io/arduino/`
 - `https://miusuariohoy.github.io/arduino/guia/`
 - `https://miusuariohoy.github.io/arduino/evaluacion.html`
+- `https://miusuariohoy.github.io/arduino/tinkercad.html`
 
 El canal de entrega, la clave pública y la materia están en
 `scripts/entrega.js`. La clave privada sigue solamente en `inform/claves/`.

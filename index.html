@@ -3,20 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Guía interactiva, simulador Arduino Uno y ejercitación autocorregible de electrónica digital, analógica, LCD, matriz, sensores y robótica.">
+<meta name="description" content="Guía de Arduino Uno con teoría, diagramas de conexión, ejercitación autocorregible y simulación en Tinkercad.">
 <title>Arduino · Electrónica y Robótica</title>
 <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 <header class="hero">
   <h1>Arduino · Electrónica y Robótica</h1>
-  <p>Aprendé a programar una Arduino Uno con simulación segura, corrección inmediata y proyectos de robótica. Las ideas se prueban primero en el laboratorio virtual y después se llevan al hardware real.</p>
+  <p>Aprendé a programar una Arduino Uno con ejercicios corregibles, proyectos de robótica y simulación en Tinkercad. Cada actividad muestra el enunciado y la imagen de la conexión electrónica que tenés que armar.</p>
   <p class="volver"><a href="guia/index.html">📘 Guía de Teoría</a> · <a href="tinkercad.html">🔌 Tinkercad</a> · <a href="evaluacion.html">📝 Evaluaciones</a></p>
 </header>
 
 <nav class="sumario" aria-label="Secciones de la portada">
   <a href="#fundamentos">Fundamentos</a>
-  <a href="#laboratorio">Laboratorio</a>
   <a href="#ejercicios">Ejercitación</a>
   <a href="#quiz">Cuestionario</a>
   <a href="#entrega">Entrega</a>
@@ -31,74 +30,22 @@
   <a href="guia/index.html#matriz">Matriz</a>
   <a href="guia/index.html#sensores">Sensores</a>
   <a href="guia/index.html#robotica">Robótica</a>
+  <a href="guia/index.html#componentes">Componentes</a>
 </nav>
 
 <main>
   <section id="fundamentos">
     <h2 class="seccion">Cómo trabajar en este sitio</h2>
     <div class="card">
-      <p class="consigna">Cada tema tiene tres momentos: <strong>leer la guía</strong>, <strong>probar en el simulador</strong> y <strong>resolver ejercicios con corrección propia</strong>. No hay pistas desplegables ni soluciones escondidas: el objetivo es que pienses el sketch y verifiques por requisitos.</p>
-      <div class="concept"><strong>Simulación didáctica.</strong> El intérprete ejecuta un subconjunto de Arduino: <code class="inline">setup()</code>, <code class="inline">loop()</code>, variables, <code class="inline">if</code>, <code class="inline">for</code>, <code class="inline">while</code>, E/S digital y analógica, LCD, matriz, servo y monitor serie. No reemplaza al compilador real, pero sirve para razonar paso a paso.</div>
+      <p class="consigna">Cada tema tiene tres momentos: <strong>leer la teoría y la conexión en la guía</strong>, <strong>armar el circuito que muestra cada imagen</strong> y <strong>resolver el ejercicio con corrección propia</strong>. No hay pistas desplegables ni soluciones escondidas: el objetivo es que pienses el sketch y verifiques por requisitos.</p>
+      <div class="concept"><strong>Simulación en Tinkercad.</strong> Las actividades marcadas como simulables se arman con los componentes indicados en <a href="tinkercad.html">la guía de Tinkercad</a>. La matriz 8x8 con MAX7219 y el sensor DHT11 no están en Tinkercad: para esos casos la imagen muestra la conexión real y el enunciado pide el programa.</div>
       <div class="nota"><strong>Seguridad eléctrica.</strong> En hardware real usá resistencias para los LEDs, nunca conectes un pin directamente a masa con el LED encendido, compartí masa entre módulos y respetá los límites de corriente de la placa.</div>
-    </div>
-  </section>
-
-  <section id="laboratorio">
-    <h2 class="seccion">Laboratorio virtual · Arduino Uno</h2>
-    <div class="card">
-      <p class="consigna">Elegí un escenario, editá el código y ejecutalo. Podés avanzar de a un paso para ver qué hace cada instrucción. Los controles cambian las entradas y el monitor serie muestra lo que imprime el programa.</p>
-      <div id="sim-tabs" class="tabs" role="tablist" aria-label="Escenarios del simulador"></div>
-      <div class="lab-grid">
-        <div class="lab-col">
-          <label class="etiqueta" for="codigo-arduino">Sketch</label>
-          <textarea id="codigo-arduino" class="codigo" spellcheck="false" aria-label="Código Arduino"></textarea>
-          <div class="acciones">
-            <button type="button" id="sim-ejecutar" class="accion primaria">▶ Ejecutar</button>
-            <button type="button" id="sim-paso" class="accion secundaria">⏭ Paso a paso</button>
-            <button type="button" id="sim-reiniciar" class="accion alerta">↺ Reiniciar</button>
-            <label class="etiqueta" for="sim-vueltas">Vueltas de loop:
-              <input id="sim-vueltas" type="number" min="1" max="30" value="6" style="width:70px">
-            </label>
-          </div>
-          <div id="sim-estado" class="sim-estado" role="status" aria-live="polite"></div>
-          <div id="controles-sim" class="controles-sim"></div>
-          <div id="monitor-serial" class="monitor" aria-label="Monitor serie"></div>
-        </div>
-        <div class="lab-col">
-          <div class="board">
-            <h4>ARDUINO UNO</h4>
-            <div id="pines-digitales" class="fila-pines" aria-label="Pines digitales"></div>
-            <div id="pines-analogicos" class="fila-pines" aria-label="Pines analógicos"></div>
-          </div>
-          <div class="paneles">
-            <div>
-              <p class="etiqueta">LCD 16x2</p>
-              <div id="panel-lcd" class="lcd" aria-label="Pantalla LCD"></div>
-            </div>
-            <div>
-              <p class="etiqueta">Matriz 8x8</p>
-              <div id="panel-matriz" class="matriz" aria-label="Matriz LED"></div>
-            </div>
-          </div>
-          <div class="paneles">
-            <div>
-              <p class="etiqueta">Servo</p>
-              <div class="servo-bar" id="servo-barra"><i></i></div>
-              <p class="servo-valor" id="servo-valor">90°</p>
-            </div>
-            <div>
-              <p class="etiqueta">Motor</p>
-              <p class="servo-valor" id="motor-valor">detenido</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
   <section id="ejercicios">
     <h2 class="seccion">Ejercitación con corrección propia</h2>
-    <p class="consigna">18 actividades: 3 por módulo. Escribí el sketch en el cuadro y presioná <strong>Corregir</strong>. La corrección indica qué requisitos cumpliste y cuáles faltan.</p>
+    <p class="consigna">18 actividades: 3 por módulo. Cada una muestra el enunciado y la imagen de la conexión electrónica que tenés que armar. Escribí el sketch en el cuadro y presioná <strong>Corregir</strong>: la corrección indica qué requisitos cumpliste y cuáles faltan.</p>
 
     <h3>Digital · LED, botón y semáforo</h3>
     <div id="ej-digital"></div>
@@ -149,8 +96,6 @@
 </footer>
 
 <script src="scripts/entrega.js"></script>
-<script src="sim/arduino.js"></script>
-<script src="laboratorio.js"></script>
 <script src="ejercicios.js"></script>
 <script src="app.js"></script>
 </body>

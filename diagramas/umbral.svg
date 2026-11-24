@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Umbral analógico con LED en D13">
+
+  <style>
+    text{font-family:"Segoe UI",Arial,sans-serif;fill:#1e293b}
+    .titulo{font-size:20px;font-weight:700;fill:#00695c}
+    .pin{font-size:13px;font-weight:700;fill:#f8fafc}
+    .etq{font-size:13px}
+    .small{font-size:11px;fill:#64748b}
+    .board{font-size:16px;font-weight:700;fill:#e0f2f1;letter-spacing:1px}
+  </style>
+
+  <rect width="640" height="260" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="32" y="36" class="titulo">Umbral analógico con LED en D13</text>
+  <text x="608" y="36" text-anchor="end" class="small">Rojo = 5 V · Negro = GND · Naranja = señal</text>
+<rect x="24" y="52" width="210" height="170" rx="18" fill="#00979c" stroke="#00695c" stroke-width="3"/><text x="129" y="82" text-anchor="middle" class="board">ARDUINO UNO</text><rect x="42" y="96" width="168" height="104" rx="8" fill="#e0f2f1" opacity=".35"/><circle cx="234" cy="120" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="125" text-anchor="end" class="pin">A0</text><circle cx="234" cy="180" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="185" text-anchor="end" class="pin">D13</text><circle cx="234" cy="220" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="225" text-anchor="end" class="pin">GND</text><circle cx="234" cy="80" r="7" fill="#fde047" stroke="#ffffff" stroke-width="2"/><text x="222" y="85" text-anchor="end" class="pin">5V</text>
+<polyline points="241,80 390,80 390,118" fill="none" stroke="#dc2626" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,220 330,220 330,150" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="241,120 450,120" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="410" y="107" width="80" height="56" rx="8" fill="#ffffff" stroke="#334155" stroke-width="2"/><circle cx="450" cy="135" r="18" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/><path d="M450 135 L463 122" stroke="#e8663d" stroke-width="3"/><text x="450" y="187" text-anchor="middle" class="etq">Potenciómetro 10 kΩ</text><polyline points="241,180 330,180" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="330" y="169" width="64" height="22" rx="5" fill="#ffffff" stroke="#334155" stroke-width="2"/><text x="362" y="185" text-anchor="middle" class="etq">220 Ω</text><polyline points="394,180 430,180" fill="none" stroke="#e8663d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="460" cy="180" r="17" fill="#22c55e" opacity=".85" stroke="#991b1b" stroke-width="2"/><path d="M453 187 L467 173 M461 172 L468 172 L468 179" stroke="#ffffff" stroke-width="2" fill="none"/><text x="460" y="218" text-anchor="middle" class="etq">LED D13</text><polyline points="460,197 505,197 505,220 241,220" fill="none" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><text x="470" y="232" text-anchor="middle" class="small">if (valor &gt; 512) enciende</text>
+</svg>

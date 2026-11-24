@@ -10,7 +10,7 @@
 <body>
 <header class="hero">
   <h1>Guía de Teoría · Arduino Uno</h1>
-  <p>Conceptos esenciales de programación y electrónica aplicados a Arduino, con ejemplos que podés probar en el laboratorio virtual.</p>
+  <p>Conceptos esenciales de programación y electrónica aplicados a Arduino, con esquemas de conexión para armar cada circuito y probarlo en Tinkercad o en hardware real.</p>
   <p class="volver"><a href="../index.html">← Volver a la ejercitación</a></p>
 </header>
 <nav class="nav-guias" aria-label="Temas">
@@ -100,14 +100,17 @@ lcd.<span class="fn">print</span>(<span class="st">"LCD lista"</span>);</pre>
   <section id="matriz">
     <h2 class="seccion">5. Matriz LED 8x8</h2>
     <div class="card">
-      <p>La matriz tiene 64 LEDs organizados en 8 filas y 8 columnas. Cada punto se enciende con coordenadas <code class="inline">(x, y)</code>, donde <code class="inline">x</code> es la columna y <code class="inline">y</code> la fila, ambas de 0 a 7.</p>
-      <pre class="codigo">matriz.<span class="fn">clear</span>();
+      <p>La matriz tiene 64 LEDs organizados en 8 filas y 8 columnas. Con el módulo MAX7219 real se usa la librería <code class="inline">LedControl</code> y la orden <code class="inline">matriz.setLed(0, fila, columna, true)</code>. Ambos índices van de 0 a 7.</p>
+      <pre class="codigo"><span class="kw">#include</span> &lt;LedControl.h&gt;
+LedControl matriz = LedControl(<span class="nu">11</span>, <span class="nu">13</span>, <span class="nu">10</span>, <span class="nu">1</span>);
+matriz.<span class="fn">shutdown</span>(<span class="nu">0</span>, <span class="kw">false</span>);
+matriz.<span class="fn">clearDisplay</span>(<span class="nu">0</span>);
 <span class="kw">for</span> (<span class="kw">int</span> x = <span class="nu">0</span>; x &lt; <span class="nu">8</span>; x = x + <span class="nu">1</span>) {
-  matriz.<span class="fn">setPoint</span>(x, <span class="nu">3</span>, <span class="nu">1</span>);
+  matriz.<span class="fn">setLed</span>(<span class="nu">0</span>, <span class="nu">3</span>, x, <span class="kw">true</span>);
   <span class="fn">delay</span>(<span class="nu">100</span>);
-  matriz.<span class="fn">clear</span>();
+  matriz.<span class="fn">setLed</span>(<span class="nu">0</span>, <span class="nu">3</span>, x, <span class="kw">false</span>);
 }</pre>
-      <p>Una animación es una sucesión de <strong>frames</strong>. Cada frame limpia la matriz, dibuja una figura y espera un breve tiempo. Con módulos MAX7219 reales se usa una librería equivalente para enviar los mismos puntos por SPI.</p>
+      <p>Una animación es una sucesión de <strong>frames</strong>. Cada frame limpia la matriz, dibuja una figura y espera un breve tiempo. La librería envía los puntos por SPI usando DIN, CLK y CS.</p>
     </div>
   </section>
 
@@ -116,14 +119,16 @@ lcd.<span class="fn">print</span>(<span class="st">"LCD lista"</span>);</pre>
     <div class="card">
       <p>Un sensor convierte una magnitud física en una señal eléctrica. En Arduino, los sensores analógicos se leen con <code class="inline">analogRead()</code> y los digitales con <code class="inline">digitalRead()</code>.</p>
       <ul class="lista-codigo">
-        <li><strong>LDR:</strong> resistencia que cambia con la luz; da lecturas altas con más iluminación en el simulador.</li>
-        <li><strong>DHT:</strong> temperatura y humedad; en el laboratorio se representa como una lectura proporcional en <code class="inline">A2</code>.</li>
-        <li><strong>HC-SR04:</strong> distancia por ultrasonido; en el simulador se lee como centímetros en <code class="inline">A3</code>.</li>
+        <li><strong>LDR:</strong> resistencia que cambia con la luz; con el LDR del lado de 5 V, la lectura de <code class="inline">A1</code> sube cuando hay más iluminación.</li>
+        <li><strong>DHT11:</strong> temperatura y humedad por un pin digital; se conecta en <code class="inline">D2</code> y se lee con la librería <code class="inline">DHT.h</code>.</li>
+        <li><strong>HC-SR04:</strong> distancia por ultrasonido; dispara el pulso por <code class="inline">D9</code> y mide el eco en <code class="inline">D10</code> con <code class="inline">pulseIn()</code>.</li>
       </ul>
       <p>Un <strong>umbral</strong> es un valor límite: si la lectura lo supera o cae por debajo, se activa una acción. Para reducir ruido se puede <strong>promediar</strong> varias lecturas:</p>
-      <pre class="codigo"><span class="kw">int</span> suma = <span class="nu">0</span>;
+      <pre class="codigo"><span class="kw">long</span> duracion = <span class="fn">pulseIn</span>(<span class="nu">10</span>, HIGH);
+<span class="kw">int</span> distancia = duracion * <span class="nu">0.0343</span> / <span class="nu">2</span>;
+<span class="kw">int</span> suma = <span class="nu">0</span>;
 <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nu">0</span>; i &lt; <span class="nu">3</span>; i = i + <span class="nu">1</span>) {
-  suma = suma + <span class="fn">analogRead</span>(A3);
+  suma = suma + distancia;
 }
 <span class="kw">int</span> promedio = suma / <span class="nu">3</span>;</pre>
       <div class="nota"><strong>Tinkercad:</strong> no incluye el sensor DHT11. Para probar la actividad 5.2 en Tinkercad, usá un sensor de temperatura TMP36 en <code class="inline">A2</code> y la fórmula <code class="inline">temperatura = (lectura * 5.0 / 1023 - 0.5) * 100</code>. El DHT11 real se conecta y programa más abajo, en «Componentes y conexiones».</div>
@@ -134,9 +139,13 @@ lcd.<span class="fn">print</span>(<span class="st">"LCD lista"</span>);</pre>
     <h2 class="seccion">7. Robótica: servo, motor y estados</h2>
     <div class="card">
       <p>Un <strong>servo</strong> se mueve a una posición angular: <code class="inline">servo.write(90)</code> lo coloca en 90°. Un <strong>motor con driver</strong> se controla con una señal de dirección y una señal PWM de velocidad.</p>
-      <pre class="codigo">servo.<span class="fn">attach</span>(<span class="nu">9</span>);
+      <pre class="codigo"><span class="kw">#include</span> &lt;Servo.h&gt;
+Servo servo;
+servo.<span class="fn">attach</span>(<span class="nu">9</span>);
 servo.<span class="fn">write</span>(<span class="nu">45</span>);
-motor.<span class="fn">write</span>(<span class="nu">200</span>);</pre>
+digitalWrite(<span class="nu">7</span>, HIGH);
+digitalWrite(<span class="nu">8</span>, LOW);
+analogWrite(<span class="nu">9</span>, <span class="nu">200</span>);</pre>
       <p>Un robot sencillo puede describirse con una <strong>máquina de estados</strong>: cada estado define una acción y una condición para pasar a otro. Por ejemplo: estado 0 = esperar, estado 1 = avanzar. Usar una variable <code class="inline">int estado</code> evita encadenar condiciones confusas.</p>
       <div class="concept"><strong>Proyecto integrador:</strong> leer un sensor, decidir con un umbral, mostrar el valor en la LCD, mover un servo y avisar con un LED. Ese patrón —entrada, decisión, salida y comunicación— aparece en casi todos los sistemas robóticos.</div>
     </div>
@@ -150,6 +159,7 @@ motor.<span class="fn">write</span>(<span class="nu">200</span>);</pre>
     <div class="card">
       <h3>Arduino Uno</h3>
       <p>La placa tiene 14 pines digitales (D0–D13, algunos con PWM), 6 entradas analógicas (A0–A5), regulares 5 V y 3,3 V y varios pines GND. El LED integrado está en D13.</p>
+      <figure class="figura-circuito"><img src="../diagramas/arduino.svg" alt="Conexión: Recursos de la placa: pines digitales, analógicos, 5 V y GND."><figcaption>Recursos de la placa: pines digitales, analógicos, 5 V y GND.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Recurso</th><th>Uso habitual en este curso</th></tr></thead>
         <tbody>
@@ -164,6 +174,7 @@ motor.<span class="fn">write</span>(<span class="nu">200</span>);</pre>
     <div class="card">
       <h3>LED</h3>
       <p>Un LED solo conduce en un sentido: la pata larga es el ánodo (+) y la corta el cátodo (–). Siempre lleva una resistencia en serie para limitar la corriente.</p>
+      <figure class="figura-circuito"><img src="../diagramas/led.svg" alt="Conexión: Ánodo a D13 con resistencia de 220 Ω.  cátodo a GND."><figcaption>Ánodo a D13 con resistencia de 220 Ω; cátodo a GND.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pata</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -180,6 +191,7 @@ digitalWrite(13, LOW);   // apaga</pre>
     <div class="card">
       <h3>Botón pulsador</h3>
       <p>Con <code class="inline">INPUT_PULLUP</code> no hace falta resistencia externa: el pin queda en <code class="inline">HIGH</code> y baja a <code class="inline">LOW</code> cuando se presiona.</p>
+      <figure class="figura-circuito"><img src="../diagramas/boton.svg" alt="Conexión: Botón entre D2 y GND con INPUT_PULLUP.  LED de salida en D13."><figcaption>Botón entre D2 y GND con INPUT_PULLUP; LED de salida en D13.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pata del botón</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -196,6 +208,7 @@ else { digitalWrite(13, LOW); }</pre>
     <div class="card">
       <h3>Potenciómetro</h3>
       <p>Es un divisor de tensión. Al girar el eje cambia el voltaje del pin central y <code class="inline">analogRead()</code> devuelve un valor entre 0 y 1023.</p>
+      <figure class="figura-circuito"><img src="../diagramas/potenciometro.svg" alt="Conexión: Extremos a 5 V y GND.  wiper a A0."><figcaption>Extremos a 5 V y GND; wiper a A0.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Terminal</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -212,6 +225,7 @@ analogWrite(9, brillo);</pre>
     <div class="card">
       <h3>Sensor de luz LDR</h3>
       <p>La resistencia del LDR baja con más luz. Colocándolo del lado de 5 V, la lectura sube cuando aumenta la iluminación: por eso el umbral de la actividad es <code class="inline">luz &lt; 300</code>.</p>
+      <figure class="figura-circuito"><img src="../diagramas/ldr.svg" alt="Conexión: Divisor LDR + 10 kΩ: punto medio a A1.  LED indicador en D13."><figcaption>Divisor LDR + 10 kΩ: punto medio a A1; LED indicador en D13.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Punto</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -225,6 +239,7 @@ analogWrite(9, brillo);</pre>
     <div class="card">
       <h3>Pantalla LCD 16x2</h3>
       <p>En modo paralelo usa la librería <code class="inline">LiquidCrystal</code>. El contraste se ajusta con un potenciómetro de 10 kΩ conectado al pin VO.</p>
+      <figure class="figura-circuito"><img src="../diagramas/lcd.svg" alt="Conexión: RS 12, E 11, D4–D7 en 5, 4, 3, 2.  VO al potenciómetro de contraste."><figcaption>RS 12, E 11, D4–D7 en 5, 4, 3, 2; VO al potenciómetro de contraste.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin LCD</th><th>Conexión Arduino</th></tr></thead>
         <tbody>
@@ -246,7 +261,8 @@ void setup() { lcd.begin(16, 2); lcd.print("Hola Arduino"); }</pre>
 
     <div class="card">
       <h3>Matriz LED 8x8 con MAX7219</h3>
-      <div class="nota"><strong>No está en Tinkercad</strong> como módulo MAX7219. Las actividades 4.1 a 4.3 se hacen en el simulador de este sitio o en hardware real. En Tinkercad podés reemplazarla por 8 LEDs con un 74HC595 para practicar barrido.</div>
+      <div class="nota"><strong>No está en Tinkercad</strong> como módulo MAX7219. Las actividades 4.1 a 4.3 se hacen con hardware real siguiendo el esquema de arriba y el programa con <code class="inline">LedControl</code>. En Tinkercad podés reemplazarla por 8 LEDs con un 74HC595 para practicar barrido.</div>
+      <figure class="figura-circuito"><img src="../diagramas/matriz.svg" alt="Conexión: DIN 11, CS 10, CLK 13, más 5 V y GND."><figcaption>DIN 11, CS 10, CLK 13, más 5 V y GND.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin módulo</th><th>Conexión Arduino</th></tr></thead>
         <tbody>
@@ -270,6 +286,7 @@ void loop() { matriz.setLed(0, 4, 3, true); }  // columna 4, fila 3</pre>
     <div class="card">
       <h3>Sensor DHT11 de temperatura y humedad</h3>
       <div class="nota"><strong>No está en Tinkercad.</strong> Para la actividad 5.2 usá un TMP36 en Tinkercad; para el DHT11 real seguí esta conexión.</div>
+      <figure class="figura-circuito"><img src="../diagramas/dht.svg" alt="Conexión: VCC a 5 V, GND y DATA en D2 con resistencia pull-up de 4,7 kΩ."><figcaption>VCC a 5 V, GND y DATA en D2 con resistencia pull-up de 4,7 kΩ.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin DHT11</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -287,6 +304,7 @@ void loop() { Serial.println(dht.readTemperature()); delay(1000); }</pre>
     <div class="card">
       <h3>Sensor ultrasónico HC-SR04</h3>
       <p>Emite un pulso por TRIG y mide el tiempo que tarda el eco en volver por ECHO. La distancia en cm es <code class="inline">duración * 0.0343 / 2</code>.</p>
+      <figure class="figura-circuito"><img src="../diagramas/ultrasonido.svg" alt="Conexión: TRIG en D9, ECHO en D10, alimentación 5 V y GND común."><figcaption>TRIG en D9, ECHO en D10, alimentación 5 V y GND común.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin HC-SR04</th><th>Conexión Arduino</th></tr></thead>
         <tbody>
@@ -306,6 +324,7 @@ int distancia = duracion * 0.0343 / 2;</pre>
     <div class="card">
       <h3>Servo SG90</h3>
       <p>El servo tiene tres cables: señal, 5 V y GND. Se controla con la librería <code class="inline">Servo.h</code> y el ángulo va de 0° a 180°.</p>
+      <figure class="figura-circuito"><img src="../diagramas/servo.svg" alt="Conexión: Señal en D9, 5 V y GND común con la placa."><figcaption>Señal en D9, 5 V y GND común con la placa.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Cable</th><th>Conexión</th></tr></thead>
         <tbody>
@@ -323,6 +342,7 @@ void loop() { servo.write(135); delay(500); servo.write(45); delay(500); }</pre>
     <div class="card">
       <h3>Motor DC con driver L293D</h3>
       <p>El driver separa la alimentación lógica de la del motor. Nunca conectes el motor directamente a un pin de la Arduino.</p>
+      <figure class="figura-circuito"><img src="../diagramas/motor.svg" alt="Conexión: IN1 7, IN2 8, ENABLE 9 con PWM.  fuente externa para el motor y GND común."><figcaption>IN1 7, IN2 8, ENABLE 9 con PWM; fuente externa para el motor y GND común.</figcaption></figure>
       <div class="tabla"><table>
         <thead><tr><th>Pin driver</th><th>Conexión</th></tr></thead>
         <tbody>
