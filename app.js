@@ -26,20 +26,5 @@
     secciones.forEach(function(s){ observerGlobal.observe(s); });
   }
 
-  function progreso(){
-    const total = document.querySelectorAll('.ejercicio').length;
-    const listos = document.querySelectorAll('.ejercicio.correcto').length;
-    const nodo = document.getElementById('progreso-ejercicios');
-    if (!nodo || !total) return;
-    nodo.textContent = 'Progreso: ' + listos + ' de ' + total + ' actividades correctas.';
-    nodo.style.width = Math.round(listos / total * 100) + '%';
-  }
-
-  document.addEventListener('click', function(e){
-    const accion = e.target.closest('.ejercicio .corregir, .ejercicio .limpiar');
-    if (accion) setTimeout(progreso, 0);
-  });
-
   resaltarEnlaces();
-  progreso();
 })();
