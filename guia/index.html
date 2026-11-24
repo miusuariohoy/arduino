@@ -21,6 +21,8 @@
   <a href="#matriz">Matriz</a>
   <a href="#sensores">Sensores</a>
   <a href="#robotica">Robótica</a>
+  <a href="#componentes">Componentes</a>
+  <a href="../tinkercad.html">Tinkercad</a>
 </nav>
 <main>
   <section id="sketch">
@@ -124,6 +126,7 @@ lcd.<span class="fn">print</span>(<span class="st">"LCD lista"</span>);</pre>
   suma = suma + <span class="fn">analogRead</span>(A3);
 }
 <span class="kw">int</span> promedio = suma / <span class="nu">3</span>;</pre>
+      <div class="nota"><strong>Tinkercad:</strong> no incluye el sensor DHT11. Para probar la actividad 5.2 en Tinkercad, usá un sensor de temperatura TMP36 en <code class="inline">A2</code> y la fórmula <code class="inline">temperatura = (lectura * 5.0 / 1023 - 0.5) * 100</code>. El DHT11 real se conecta y programa más abajo, en «Componentes y conexiones».</div>
     </div>
   </section>
 
@@ -136,6 +139,205 @@ servo.<span class="fn">write</span>(<span class="nu">45</span>);
 motor.<span class="fn">write</span>(<span class="nu">200</span>);</pre>
       <p>Un robot sencillo puede describirse con una <strong>máquina de estados</strong>: cada estado define una acción y una condición para pasar a otro. Por ejemplo: estado 0 = esperar, estado 1 = avanzar. Usar una variable <code class="inline">int estado</code> evita encadenar condiciones confusas.</p>
       <div class="concept"><strong>Proyecto integrador:</strong> leer un sensor, decidir con un umbral, mostrar el valor en la LCD, mover un servo y avisar con un LED. Ese patrón —entrada, decisión, salida y comunicación— aparece en casi todos los sistemas robóticos.</div>
+    </div>
+  </section>
+
+  <section id="componentes">
+    <h2 class="seccion">8. Teoría y conexión de cada elemento</h2>
+    <p class="consigna">Estas tablas son la referencia para armar el circuito real o el virtual. En Tinkercad los nombres de los componentes pueden variar; buscalos por «Arduino Uno», «LED», «pushbutton», «potentiometer», «photoresistor», «LCD 16x2», «ultrasonic sensor», «micro servo» y «L293D».</p>
+    <div class="concept"><strong>Convención de colores:</strong> rojo = 5 V, negro/marrón = GND, amarillo/naranja = señal. Todos los módulos deben compartir masa con la Arduino. Nunca alimentes un motor directamente desde un pin de la placa.</div>
+
+    <div class="card">
+      <h3>Arduino Uno</h3>
+      <p>La placa tiene 14 pines digitales (D0–D13, algunos con PWM), 6 entradas analógicas (A0–A5), regulares 5 V y 3,3 V y varios pines GND. El LED integrado está en D13.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Recurso</th><th>Uso habitual en este curso</th></tr></thead>
+        <tbody>
+          <tr><td>D0–D13</td><td>Entradas/salidas digitales; PWM en 3, 5, 6, 9, 10 y 11.</td></tr>
+          <tr><td>A0–A5</td><td>Lecturas analógicas de 0 a 1023. También se usan como digitales.</td></tr>
+          <tr><td>5 V / GND</td><td>Alimentación de sensores y módulos. Compartir GND es obligatorio.</td></tr>
+          <tr><td>USB</td><td>Alimentación y carga del sketch desde el IDE o Tinkercad.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>LED</h3>
+      <p>Un LED solo conduce en un sentido: la pata larga es el ánodo (+) y la corta el cátodo (–). Siempre lleva una resistencia en serie para limitar la corriente.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pata</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>Ánodo (larga)</td><td>D13 a través de una resistencia de 220 Ω.</td></tr>
+          <tr><td>Cátodo (corta)</td><td>GND.</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">pinMode(13, OUTPUT);
+digitalWrite(13, HIGH);  // enciende
+delay(500);
+digitalWrite(13, LOW);   // apaga</pre>
+    </div>
+
+    <div class="card">
+      <h3>Botón pulsador</h3>
+      <p>Con <code class="inline">INPUT_PULLUP</code> no hace falta resistencia externa: el pin queda en <code class="inline">HIGH</code> y baja a <code class="inline">LOW</code> cuando se presiona.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pata del botón</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>Una pata</td><td>D2.</td></tr>
+          <tr><td>Otra pata</td><td>GND.</td></tr>
+          <tr><td>Resistencia</td><td>Interna, activada por <code class="inline">INPUT_PULLUP</code>.</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">pinMode(2, INPUT_PULLUP);
+if (digitalRead(2) == 0) { digitalWrite(13, HIGH); }
+else { digitalWrite(13, LOW); }</pre>
+    </div>
+
+    <div class="card">
+      <h3>Potenciómetro</h3>
+      <p>Es un divisor de tensión. Al girar el eje cambia el voltaje del pin central y <code class="inline">analogRead()</code> devuelve un valor entre 0 y 1023.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Terminal</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>Extremo 1</td><td>5 V.</td></tr>
+          <tr><td>Extremo 2</td><td>GND.</td></tr>
+          <tr><td>Wiper (centro)</td><td>A0.</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">int pot = analogRead(A0);
+int brillo = map(pot, 0, 1023, 0, 255);
+analogWrite(9, brillo);</pre>
+    </div>
+
+    <div class="card">
+      <h3>Sensor de luz LDR</h3>
+      <p>La resistencia del LDR baja con más luz. Colocándolo del lado de 5 V, la lectura sube cuando aumenta la iluminación: por eso el umbral de la actividad es <code class="inline">luz &lt; 300</code>.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Punto</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>5 V</td><td>Un extremo del LDR.</td></tr>
+          <tr><td>Otro extremo del LDR</td><td>A1 y, a la vez, una resistencia fija de 10 kΩ.</td></tr>
+          <tr><td>Otro extremo de la resistencia</td><td>GND.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>Pantalla LCD 16x2</h3>
+      <p>En modo paralelo usa la librería <code class="inline">LiquidCrystal</code>. El contraste se ajusta con un potenciómetro de 10 kΩ conectado al pin VO.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin LCD</th><th>Conexión Arduino</th></tr></thead>
+        <tbody>
+          <tr><td>VSS</td><td>GND</td></tr>
+          <tr><td>VDD</td><td>5 V</td></tr>
+          <tr><td>VO</td><td>Wiper de potenciómetro de 10 kΩ entre 5 V y GND</td></tr>
+          <tr><td>RS</td><td>D12</td></tr>
+          <tr><td>RW</td><td>GND</td></tr>
+          <tr><td>E</td><td>D11</td></tr>
+          <tr><td>D4, D5, D6, D7</td><td>D5, D4, D3, D2 respectivamente</td></tr>
+          <tr><td>A (backlight +)</td><td>5 V con resistencia de 220 Ω</td></tr>
+          <tr><td>K (backlight –)</td><td>GND</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">#include &lt;LiquidCrystal.h&gt;
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+void setup() { lcd.begin(16, 2); lcd.print("Hola Arduino"); }</pre>
+    </div>
+
+    <div class="card">
+      <h3>Matriz LED 8x8 con MAX7219</h3>
+      <div class="nota"><strong>No está en Tinkercad</strong> como módulo MAX7219. Las actividades 4.1 a 4.3 se hacen en el simulador de este sitio o en hardware real. En Tinkercad podés reemplazarla por 8 LEDs con un 74HC595 para practicar barrido.</div>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin módulo</th><th>Conexión Arduino</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td>5 V</td></tr>
+          <tr><td>GND</td><td>GND</td></tr>
+          <tr><td>DIN</td><td>D11</td></tr>
+          <tr><td>CS / LOAD</td><td>D10</td></tr>
+          <tr><td>CLK</td><td>D13</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">#include &lt;LedControl.h&gt;
+LedControl matriz = LedControl(11, 13, 10, 1);
+void setup() {
+  matriz.shutdown(0, false);
+  matriz.setIntensity(0, 8);
+  matriz.clearDisplay(0);
+}
+void loop() { matriz.setLed(0, 4, 3, true); }  // columna 4, fila 3</pre>
+    </div>
+
+    <div class="card">
+      <h3>Sensor DHT11 de temperatura y humedad</h3>
+      <div class="nota"><strong>No está en Tinkercad.</strong> Para la actividad 5.2 usá un TMP36 en Tinkercad; para el DHT11 real seguí esta conexión.</div>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin DHT11</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td>5 V</td></tr>
+          <tr><td>GND</td><td>GND</td></tr>
+          <tr><td>DATA</td><td>D2 con resistencia pull-up de 4,7 kΩ a 5 V</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">#include &lt;DHT.h&gt;
+DHT dht(2, DHT11);
+void setup() { dht.begin(); }
+void loop() { Serial.println(dht.readTemperature()); delay(1000); }</pre>
+    </div>
+
+    <div class="card">
+      <h3>Sensor ultrasónico HC-SR04</h3>
+      <p>Emite un pulso por TRIG y mide el tiempo que tarda el eco en volver por ECHO. La distancia en cm es <code class="inline">duración * 0.0343 / 2</code>.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin HC-SR04</th><th>Conexión Arduino</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td>5 V</td></tr>
+          <tr><td>GND</td><td>GND</td></tr>
+          <tr><td>TRIG</td><td>D9</td></tr>
+          <tr><td>ECHO</td><td>D10 (en hardware real, usar divisor 1 kΩ / 2 kΩ para bajar a 5 V)</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">digitalWrite(9, LOW); delayMicroseconds(2);
+digitalWrite(9, HIGH); delayMicroseconds(10);
+digitalWrite(9, LOW);
+long duracion = pulseIn(10, HIGH);
+int distancia = duracion * 0.0343 / 2;</pre>
+    </div>
+
+    <div class="card">
+      <h3>Servo SG90</h3>
+      <p>El servo tiene tres cables: señal, 5 V y GND. Se controla con la librería <code class="inline">Servo.h</code> y el ángulo va de 0° a 180°.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Cable</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>Señal (amarillo/naranja)</td><td>D9</td></tr>
+          <tr><td>VCC (rojo)</td><td>5 V; si son varios servos, fuente externa</td></tr>
+          <tr><td>GND (marrón/negro)</td><td>GND común con la Arduino</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">#include &lt;Servo.h&gt;
+Servo servo;
+void setup() { servo.attach(9); }
+void loop() { servo.write(135); delay(500); servo.write(45); delay(500); }</pre>
+    </div>
+
+    <div class="card">
+      <h3>Motor DC con driver L293D</h3>
+      <p>El driver separa la alimentación lógica de la del motor. Nunca conectes el motor directamente a un pin de la Arduino.</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin driver</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>VCC1 (lógica)</td><td>5 V de la Arduino</td></tr>
+          <tr><td>VCC2 (motor)</td><td>Fuente externa según el motor</td></tr>
+          <tr><td>GND</td><td>GND común</td></tr>
+          <tr><td>IN1 / IN2</td><td>D7 / D8 (dirección)</td></tr>
+          <tr><td>ENABLE</td><td>D9 con <code class="inline">analogWrite()</code> para velocidad</td></tr>
+          <tr><td>OUT1 / OUT2</td><td>Los dos cables del motor</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">pinMode(7, OUTPUT); pinMode(8, OUTPUT); pinMode(9, OUTPUT);
+digitalWrite(7, HIGH); digitalWrite(8, LOW);
+analogWrite(9, 200);  // velocidad PWM</pre>
+      <div class="concept"><strong>Tinkercad:</strong> usa el driver <code class="inline">L293D</code>. El módulo L298N de muchas placas reales equivale a este esquema, pero no aparece con ese nombre en Tinkercad.</div>
     </div>
   </section>
 </main>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ejercicios de Arduino que se pueden simular en Tinkercad y alternativas con conexión y programa para los que no.">
+<title>Arduino en Tinkercad · Ejercicios y conexiones</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Arduino en Tinkercad</h1>
+  <p>Tinkercad Circuits permite armar y simular muchos de los ejercicios de este curso sin hardware. Acá tenés cuáles se pueden hacer allí y, para los que no, la conexión y el programa para realizarlos con componentes reales.</p>
+  <p class="volver"><a href="index.html">← Ejercitación</a> · <a href="guia/index.html">Guía de Teoría</a></p>
+</header>
+<nav class="sumario" aria-label="Secciones">
+  <a href="#si">Se pueden hacer</a>
+  <a href="#no">Los que no</a>
+  <a href="#pasos">Cómo trabajar</a>
+</nav>
+<main>
+  <section id="si">
+    <h2 class="seccion">Ejercicios que se pueden hacer en Tinkercad</h2>
+    <div class="card">
+      <p class="consigna">Ingresá a Tinkercad Circuits, creá un circuito nuevo y armá el componente indicado. Después copiá el sketch desde la ejercitación de este sitio y presioná <em>Start Simulation</em>. Los IDs coinciden con los de la portada.</p>
+      <a class="enlace-tink" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Abrir Tinkercad Circuits ↗</a>
+      <a class="enlace-tink" href="https://www.tinkercad.com/embed/2PqAoRDfYFM" target="_blank" rel="noopener">Ejemplo público: LCD 16x2 ↗</a>
+      <a class="enlace-tink" href="https://www.tinkercad.com/things/2gjoS9MzGnf-arduino-lcd-16x2" target="_blank" rel="noopener">Ejemplo público: LCD en galería ↗</a>
+      <div class="nota">Los circuitos públicos son ejemplos de referencia. Si no cargan o piden inicio de sesión, armá el circuito desde cero siguiendo la columna «Conexión».</div>
+      <div class="tabla"><table>
+        <thead><tr><th>ID</th><th>Actividad</th><th>Componentes en Tinkercad</th><th>Conexión principal</th></tr></thead>
+        <tbody>
+          <tr><td><code class="inline">ard-dig1</code></td><td>LED intermitente</td><td>Arduino Uno, LED, resistencia 220 Ω</td><td>D13 → 220 Ω → ánodo del LED; cátodo → GND.</td></tr>
+          <tr><td><code class="inline">ard-dig2</code></td><td>Botón con INPUT_PULLUP</td><td>Arduino Uno, pushbutton, LED + 220 Ω</td><td>D2 → botón → GND; LED en D13.</td></tr>
+          <tr><td><code class="inline">ard-dig3</code></td><td>Semáforo</td><td>3 LEDs (rojo, amarillo, verde), 3 resistencias 220 Ω</td><td>D8, D9 y D10, cada uno con su resistencia y GND.</td></tr>
+          <tr><td><code class="inline">ard-ana1</code></td><td>Leer potenciómetro</td><td>Potentiometer</td><td>Extremos a 5 V y GND; wiper a A0.</td></tr>
+          <tr><td><code class="inline">ard-ana2</code></td><td>PWM con map()</td><td>Potenciómetro + LED + 220 Ω</td><td>Wiper a A0; LED con resistencia en D9.</td></tr>
+          <tr><td><code class="inline">ard-ana3</code></td><td>Umbral con if/else</td><td>Potenciómetro + LED + 220 Ω</td><td>Wiper a A0; LED con resistencia en D13.</td></tr>
+          <tr><td><code class="inline">ard-lcd1</code></td><td>Primer mensaje LCD</td><td>LCD 16x2 + potenciómetro 10 kΩ</td><td>RS 12, E 11, D4–D7 en 5, 4, 3, 2; VO al wiper.</td></tr>
+          <tr><td><code class="inline">ard-lcd2</code></td><td>Cursor y limpieza</td><td>LCD 16x2 + potenciómetro 10 kΩ</td><td>Misma conexión; RW a GND y backlight con 220 Ω.</td></tr>
+          <tr><td><code class="inline">ard-lcd3</code></td><td>Mostrar una lectura</td><td>LCD 16x2 + potenciómetro 10 kΩ</td><td>LCD como arriba; segundo potenciómetro en A0.</td></tr>
+          <tr><td><code class="inline">ard-sen1</code></td><td>Sensor de luz LDR</td><td>Photoresistor + resistencia 10 kΩ + LED</td><td>5 V → LDR → A1 → 10 kΩ → GND; LED en D13.</td></tr>
+          <tr><td><code class="inline">ard-sen2</code></td><td>Temperatura</td><td><strong>TMP36</strong> en vez de DHT11</td><td>VCC 5 V, GND, OUT a A2. Usar la fórmula del TMP36.</td></tr>
+          <tr><td><code class="inline">ard-sen3</code></td><td>Ultrasónido y promedio</td><td>Ultrasonic Sensor de 4 pines</td><td>VCC 5 V, GND, TRIG D9, ECHO D10.</td></tr>
+          <tr><td><code class="inline">ard-rob1</code></td><td>Mover un servo</td><td>Micro Servo</td><td>Señal D9, VCC 5 V, GND común.</td></tr>
+          <tr><td><code class="inline">ard-rob2</code></td><td>Motor con driver</td><td>DC Motor + <strong>L293D</strong></td><td>IN1 D7, IN2 D8, ENABLE D9; VCC2 a fuente externa.</td></tr>
+          <tr><td><code class="inline">ard-rob3</code></td><td>Robot con dos estados</td><td>Pushbutton + Micro Servo</td><td>Botón D2 con INPUT_PULLUP; servo en D9.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="concept"><strong>TMP36 para la actividad 5.2:</strong> en Tinkercad reemplazá la división <code class="inline">lectura / 10.0</code> por <code class="inline">(lectura * 5.0 / 1023 - 0.5) * 100</code>. Así obtenés grados Celsius a partir del sensor analógico disponible.</div>
+    </div>
+  </section>
+
+  <section id="no">
+    <h2 class="seccion">Los que no se pueden hacer en Tinkercad</h2>
+    <p class="consigna">Tinkercad no incluye el módulo de matriz 8x8 con MAX7219 ni el sensor DHT11. Para estos casos, el simulador de este sitio sirve para entender la lógica y acá tenés la conexión y el programa para llevarlos a hardware real.</p>
+
+    <div class="card">
+      <h3>Matriz 8x8 · actividades <code class="inline">ard-mat1</code>, <code class="inline">ard-mat2</code> y <code class="inline">ard-mat3</code></h3>
+      <p>El módulo MAX7219 usa comunicación SPI con la librería <code class="inline">LedControl</code>, que no está disponible en Tinkercad. En el simulador de este sitio se usa el objeto <code class="inline">matriz</code>; en hardware real el código equivalente es:</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin módulo</th><th>Conexión Arduino</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td>5 V</td></tr>
+          <tr><td>GND</td><td>GND</td></tr>
+          <tr><td>DIN</td><td>D11</td></tr>
+          <tr><td>CS / LOAD</td><td>D10</td></tr>
+          <tr><td>CLK</td><td>D13</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">#include &lt;LedControl.h&gt;
+LedControl matriz = LedControl(11, 13, 10, 1);
+
+void setup() {
+  matriz.shutdown(0, false);
+  matriz.setIntensity(0, 8);
+  matriz.clearDisplay(0);
+}
+
+void loop() {
+  for (int x = 0; x &lt; 8; x = x + 1) {
+    matriz.setLed(0, 3, x, true);   // fila 3, columna x
+    delay(100);
+    matriz.setLed(0, 3, x, false);
+  }
+}</pre>
+      <div class="nota"><strong>Alternativa en Tinkercad:</strong> si querés practicar el barrido sin el módulo, armá 8 LEDs con resistencias de 220 Ω y un registro de desplazamiento <code class="inline">74HC595</code>. Usá <code class="inline">shiftOut()</code> para recorrer un bit de izquierda a derecha; la lógica del <code class="inline">for</code> es la misma que en la actividad 4.3.</div>
+    </div>
+
+    <div class="card">
+      <h3>DHT11 real · actividad <code class="inline">ard-sen2</code></h3>
+      <p>El DHT11 entrega temperatura y humedad por un pin de datos digital. Necesita la librería <code class="inline">DHT.h</code>, que Tinkercad no permite cargar. En Tinkercad se reemplaza por TMP36; en hardware real se conecta así:</p>
+      <div class="tabla"><table>
+        <thead><tr><th>Pin DHT11</th><th>Conexión</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td>5 V</td></tr>
+          <tr><td>GND</td><td>GND</td></tr>
+          <tr><td>DATA</td><td>D2 con resistencia pull-up de 4,7 kΩ a 5 V</td></tr>
+        </tbody>
+      </table></div>
+      <pre class="codigo">#include &lt;DHT.h&gt;
+DHT dht(2, DHT11);
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+}
+
+void loop() {
+  float temperatura = dht.readTemperature();
+  Serial.print("Temp: ");
+  Serial.println(temperatura);
+  if (temperatura &gt; 25) { digitalWrite(13, HIGH); }
+  else { digitalWrite(13, LOW); }
+  delay(1000);
+}</pre>
+      <div class="concept">Si comprás un módulo DHT11 ya soldado a una placa, normalmente incluye la resistencia pull-up y un capacitor; en ese caso conectá solo VCC, GND y DATA.</div>
+    </div>
+  </section>
+
+  <section id="pasos">
+    <h2 class="seccion">Cómo trabajar en Tinkercad</h2>
+    <div class="card">
+      <ol class="lista-codigo">
+        <li>Entrá a <a href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Tinkercad Circuits</a> y presioná <strong>Nuevo circuito</strong>.</li>
+        <li>Arrastrá un <strong>Arduino Uno</strong> al espacio de trabajo.</li>
+        <li>Buscá los componentes en el panel izquierdo y conectalos según la tabla de arriba. Usá el modo fotografía para ver los pines con claridad.</li>
+        <li>Presioná <strong>Código</strong>, elegí <strong>Texto</strong> y pegá el sketch de la ejercitación. Si usás LCD, agregá la librería <code class="inline">LiquidCrystal</code> desde el botón de librerías.</li>
+        <li>Presioná <strong>Iniciar simulación</strong>. Abrí el <strong>Monitor serie</strong> cuando el ejercicio use <code class="inline">Serial.print()</code>.</li>
+        <li>Cuando funcione, armá el circuito real con la tabla de conexiones de la guía y cargá el mismo sketch desde el IDE de Arduino.</li>
+      </ol>
+      <div class="nota"><strong>Diferencias a tener en cuenta:</strong> la simulación puede ir más lenta que el hardware real, los botones no rebota como los físicos y las librerías disponibles son limitadas. Por eso la matriz y el DHT11 se trabajan en el simulador de este sitio o con componentes reales.</div>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Diseñado por la profesora Alejandra Moreira</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

@@ -9,7 +9,8 @@ ejercitación autocorregible y evaluaciones con envío cifrado al repo privado
 | Archivo | Para qué sirve |
 | --- | --- |
 | `index.html` | Portada: laboratorio, 18 ejercicios, cuestionario y entrega. |
-| `guia/index.html` | Guía de Teoría por temas. |
+| `guia/index.html` | Guía de Teoría por temas, con teoría y conexión de cada componente. |
+| `tinkercad.html` | Ejercicios simulables en Tinkercad y alternativas para los que no. |
 | `evaluacion.html` | Evaluación general y práctica, sin corrección visible. |
 | `estilos.css` | Estilos compartidos. |
 | `app.js` | Navegación activa. |
@@ -28,6 +29,9 @@ ejercitación autocorregible y evaluaciones con envío cifrado al repo privado
 5. Matriz 8x8: coordenadas, puntos, frames y animación con `for`.
 6. Sensores: LDR, temperatura, ultrasónido, umbrales y promedio.
 7. Robótica: servo, motor con driver y máquina de estados.
+8. Componentes: teoría y conexión de Arduino Uno, LED, botón, potenciómetro, LDR, LCD, matriz MAX7219, DHT11, HC-SR04, servo y L293D.
+
+La página `tinkercad.html` marca qué actividades se pueden simular en Tinkercad Circuits y, para la matriz 8x8 y el DHT11, da la conexión y el programa para hardware real.
 
 ## Simulador
 

@@ -170,6 +170,19 @@ button.alerta{background:#fee2e2;color:#991b1b}
 .servo-bar i{display:block;height:100%;background:var(--naranja)}
 .servo-valor{font-weight:700;font-size:.9rem}
 .etiqueta{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+/* ---------- Tablas de teoría y Tinkercad ---------- */
+.tabla{overflow-x:auto;margin:.8rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid var(--border);padding:.45rem .6rem;text-align:left;vertical-align:top}
+th{background:#e0f2f1;color:var(--arduino-dark);font-weight:700}
+tbody tr:nth-child(even){background:#f8fafc}
+td code.inline{white-space:nowrap}
+a.enlace-tink{
+  display:inline-block;margin:.3rem .4rem .3rem 0;text-decoration:none;
+  background:var(--arduino);color:#fff;font-weight:700;font-size:.88rem;
+  padding:.45rem .85rem;border-radius:999px;
+}
+a.enlace-tink:hover{background:var(--arduino-dark)}
 /* ---------- Ejercicios ---------- */
 .ejercicio{
   border:1px solid var(--border);border-radius:12px;background:#fff;
