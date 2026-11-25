@@ -1,7 +1,7 @@
 # Arduino · Electrónica y Robótica
 
 Sitio de Arduino Uno con guía de Teoría, esquemas de conexión en cada tema,
-18 actividades con imágenes de circuitos reales para armar en Tinkercad,
+19 actividades con capturas de Tinkercad y fotos de circuitos reales,
 cuestionario con envío cifrado y evaluaciones con envío cifrado al repo
 privado `inform`.
 
@@ -9,22 +9,24 @@ privado `inform`.
 
 | Archivo | Para qué sirve |
 | --- | --- |
-| `index.html` | Portada: 18 actividades con imagen de conexión, cuestionario y entrega. |
+| `index.html` | Portada: 19 actividades con imagen de conexión, cuestionario y entrega. |
 | `guia/index.html` | Guía de Teoría por temas, con esquemas de conexión de cada componente. |
 | `tinkercad.html` | Ejercicios simulables en Tinkercad y alternativas para los que no. |
 | `evaluacion.html` | Evaluación general y práctica, sin corrección visible. |
 | `estilos.css` | Estilos compartidos. |
 | `app.js` | Navegación activa. |
-| `imagenes/*.jpg` | Fotografías de circuitos usadas en las 18 actividades (Pexels License, sin atribución visible). |
+| `imagenes/` | Capturas `tink-*.png` aportadas para 11 actividades y fotos `*.jpg` de Pexels para el resto. |
 | `diagramas/*.svg` | Esquemas vectoriales de conexión usados en la guía y en Tinkercad. |
 | `diagramas/generar.py` | Generador de los SVG; ejecutar con `python diagramas/generar.py`. |
 | `ejercicios.js` | Actividades, cuestionario y entrega; no contiene editor ni corrector de sketch. |
 | `scripts/evaluacion.js` | Correctores internos de las evaluaciones. |
 | `scripts/entrega.js` | Cifrado RSA-OAEP + AES-GCM y POST a `ntfy.sh`. |
 
-Las imágenes de `imagenes/` son de Pexels y se usan bajo su licencia gratuita,
-que no exige atribución visible. Por eso el único crédito visible del sitio
-sigue siendo el pie: `Diseñado por la profesora Alejandra Moreira`.
+Las capturas `tink-*.png` de `imagenes/` fueron aportadas para las actividades
+1.1, 1.2, 1.3, 2.1, 3.1, 3.2, 3.3, 5.1, 5.3, 6.1 y 6.4. El resto usa fotos
+de Pexels bajo su licencia gratuita, que no exige atribución visible. Por eso
+el único crédito visible del sitio sigue siendo el pie:
+`Diseñado por la profesora Alejandra Moreira`.
 
 ## Temario
 
@@ -34,7 +36,7 @@ sigue siendo el pie: `Diseñado por la profesora Alejandra Moreira`.
 4. LCD 16x2: `begin`, `setCursor`, `print`, `clear`.
 5. Matriz 8x8: coordenadas, puntos, frames y animación con `for`.
 6. Sensores: LDR, temperatura, ultrasónido, umbrales y promedio.
-7. Robótica: servo, motor con driver y máquina de estados.
+7. Robótica: servo, motor con driver, motor DC y máquina de estados.
 8. Componentes: teoría y conexión de Arduino Uno, LED, botón, potenciómetro, LDR, LCD, matriz MAX7219, DHT11, HC-SR04, servo y L293D.
 
 La página `tinkercad.html` marca qué actividades se pueden simular en Tinkercad Circuits y, para la matriz 8x8 y el DHT11, da la conexión y el programa para hardware real.

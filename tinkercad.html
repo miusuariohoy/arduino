@@ -45,6 +45,7 @@
           <tr><td><code class="inline">ard-rob1</code></td><td>Mover un servo</td><td>Micro Servo</td><td>Señal D9, VCC 5 V, GND común.</td></tr>
           <tr><td><code class="inline">ard-rob2</code></td><td>Motor con driver</td><td>DC Motor + <strong>L293D</strong></td><td>IN1 D7, IN2 D8, ENABLE D9; VCC2 a fuente externa.</td></tr>
           <tr><td><code class="inline">ard-rob3</code></td><td>Robot con dos estados</td><td>Pushbutton + Micro Servo</td><td>Botón D2 con INPUT_PULLUP; servo en D9.</td></tr>
+          <tr><td><code class="inline">ard-rob4</code></td><td>Motor DC con driver</td><td>DC Motor + <strong>L293D</strong></td><td>IN1 D7, IN2 D8, ENABLE D9; fuente externa y GND común.</td></tr>
         </tbody>
       </table></div>
       <div class="concept"><strong>TMP36 para la actividad 5.2:</strong> en Tinkercad no cargues la librería <code class="inline">DHT.h</code>. Usá el TMP36 en A2, leé con <code class="inline">analogRead(A2)</code> y convertí con <code class="inline">(lectura * 5.0 / 1023 - 0.5) * 100</code> para obtener grados Celsius.</div>

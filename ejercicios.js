@@ -8,21 +8,21 @@
   const EJERCICIOS = [
     /* ---------------------- DIGITAL ---------------------- */
     {
-      id:'ard-dig1', modulo:'digital', titulo:'1.1 · Encender y apagar el LED integrado', nivel:'Fácil', imagen:'imagenes/led-breadboard.jpg', alt:'Arduino y protoboard con un LED encendido', electronica:'Ánodo del LED a D13 con resistencia de 220 Ω; cátodo a GND.', tink:true,
+      id:'ard-dig1', modulo:'digital', titulo:'1.1 · Encender y apagar el LED integrado', nivel:'Fácil', imagen:'imagenes/tink-1.1-led.png', alt:'Captura de Tinkercad: LED conectado a la Arduino Uno', electronica:'Ánodo del LED a D13 con resistencia de 220 Ω; cátodo a GND.', tink:true,
       consigna:'Escribí un sketch con <code>setup()</code> y <code>loop()</code>. En <code>setup()</code> configurá el pin 13 como salida. En <code>loop()</code> encendé el LED con <code>digitalWrite(13, HIGH)</code>, esperá 500 ms con <code>delay(500)</code>, apagalo con <code>digitalWrite(13, LOW)</code> y esperá otros 500 ms.',
     },
     {
-      id:'ard-dig2', modulo:'digital', titulo:'1.2 · Botón con INPUT_PULLUP', nivel:'Medio', imagen:'imagenes/boton-breadboard.jpg', alt:'Manos armando un circuito con botón en protoboard', electronica:'Botón entre D2 y GND con INPUT_PULLUP; LED en D13 con 220 Ω.', tink:true,
+      id:'ard-dig2', modulo:'digital', titulo:'1.2 · Botón con INPUT_PULLUP', nivel:'Medio', imagen:'imagenes/tink-1.2-boton.png', alt:'Captura de Tinkercad: botón conectado a la Arduino Uno', electronica:'Botón entre D2 y GND con INPUT_PULLUP; LED en D13 con 220 Ω.', tink:true,
       consigna:'Configurá el pin 2 con <code>INPUT_PULLUP</code> y el 13 como salida. En <code>loop()</code> leé el botón con <code>digitalRead(2)</code>. Con <code>if</code>, encendé el LED cuando el botón esté presionado (la lectura vale 0) y apagalo cuando esté suelto.',
     },
     {
-      id:'ard-dig3', modulo:'digital', titulo:'1.3 · Semáforo con tres LEDs', nivel:'Medio', imagen:'imagenes/semaforo-leds.jpg', alt:'Arduino con varios LEDs encendidos en protoboard', electronica:'Cada LED con su resistencia de 220 Ω en D8, D9 y D10; cátodos a GND.', tink:true,
+      id:'ard-dig3', modulo:'digital', titulo:'1.3 · Semáforo con tres LEDs', nivel:'Medio', imagen:'imagenes/tink-1.3-semaforo.png', alt:'Captura de Tinkercad: semáforo con LEDs', electronica:'Cada LED con su resistencia de 220 Ω en D8, D9 y D10; cátodos a GND.', tink:true,
       consigna:'Usá los pines 8, 9 y 10 como salidas. En <code>loop()</code> encendé un LED a la vez con <code>digitalWrite</code> y apagá los otros dos. Entre cada cambio poné un <code>delay(1000)</code>. La idea es que nunca queden dos encendidos al mismo tiempo.',
     },
 
     /* ---------------------- ANALÓGICO ---------------------- */
     {
-      id:'ard-ana1', modulo:'analogico', titulo:'2.1 · Leer un potenciómetro', nivel:'Fácil', imagen:'imagenes/potenciometro-cables.jpg', alt:'Protoboard con cables y componentes analógicos', electronica:'Extremos del potenciómetro a 5 V y GND; wiper a A0.', tink:true,
+      id:'ard-ana1', modulo:'analogico', titulo:'2.1 · Leer un potenciómetro', nivel:'Fácil', imagen:'imagenes/tink-2.1-potenciometro.png', alt:'Captura de Tinkercad: potenciómetro en la Arduino Uno', electronica:'Extremos del potenciómetro a 5 V y GND; wiper a A0.', tink:true,
       consigna:'Inicializá el puerto serie con <code>Serial.begin(9600)</code>. En <code>loop()</code> leé el potenciómetro de <code>A0</code> con <code>analogRead(A0)</code> y enviá el valor al monitor con <code>Serial.println()</code>. Recordá que la lectura va de 0 a 1023.',
     },
     {
@@ -36,15 +36,15 @@
 
     /* ---------------------- LCD ---------------------- */
     {
-      id:'ard-lcd1', modulo:'lcd', titulo:'3.1 · Primer mensaje en el LCD', nivel:'Fácil', imagen:'imagenes/lcd-display.jpg', alt:'Placa electrónica con pantalla y componentes', electronica:'RS 12, E 11, D4–D7 en 5, 4, 3, 2; VO al potenciómetro de contraste.', tink:true,
+      id:'ard-lcd1', modulo:'lcd', titulo:'3.1 · Primer mensaje en el LCD', nivel:'Fácil', imagen:'imagenes/tink-3.1-lcd.png', alt:'Captura de Tinkercad: pantalla LCD conectada', electronica:'RS 12, E 11, D4–D7 en 5, 4, 3, 2; VO al potenciómetro de contraste.', tink:true,
       consigna:'En <code>setup()</code> iniciá la pantalla con <code>lcd.begin(16, 2)</code> y mostrá el texto <code>"Hola Arduino"</code> con <code>lcd.print()</code>. En <code>loop()</code> dejá solo un <code>delay()</code>: el mensaje debe quedarse fijo.',
     },
     {
-      id:'ard-lcd2', modulo:'lcd', titulo:'3.2 · Cursor y limpieza', nivel:'Medio', imagen:'imagenes/lcd-circuito.jpg', alt:'Circuito electrónico armado con display', electronica:'RS 12, E 11, D4–D7 en 5, 4, 3, 2; VO al potenciómetro de contraste.', tink:true,
+      id:'ard-lcd2', modulo:'lcd', titulo:'3.2 · Cursor y limpieza', nivel:'Medio', imagen:'imagenes/tink-3.2-lcd.png', alt:'Captura de Tinkercad: LCD con cursor', electronica:'RS 12, E 11, D4–D7 en 5, 4, 3, 2; VO al potenciómetro de contraste.', tink:true,
       consigna:'Mostrá <code>"Listo"</code> en la fila 0, columna 0. Después limpiá la pantalla con <code>lcd.clear()</code>, mové el cursor a la fila 1, columna 3 con <code>lcd.setCursor(3, 1)</code> y escribí <code>"Fin"</code>. Recordá que <code>setCursor</code> recibe primero la columna y después la fila.',
     },
     {
-      id:'ard-lcd3', modulo:'lcd', titulo:'3.3 · Mostrar una lectura', nivel:'Medio', imagen:'imagenes/lcd-componentes.jpg', alt:'Componentes electrónicos y circuito con pantalla', electronica:'LCD en modo paralelo como en las actividades anteriores; segundo potenciómetro en A0.', tink:true,
+      id:'ard-lcd3', modulo:'lcd', titulo:'3.3 · Mostrar una lectura', nivel:'Medio', imagen:'imagenes/tink-3.3-lcd.png', alt:'Captura de Tinkercad: LCD mostrando una lectura', electronica:'LCD en modo paralelo como en las actividades anteriores; segundo potenciómetro en A0.', tink:true,
       consigna:'Leé el potenciómetro de <code>A0</code> y mostralo en la LCD: en la fila 0 escribí <code>"Valor:"</code> y en la fila 1 el número leído con <code>lcd.print(valor)</code>. Actualizá cada 300 ms.',
     },
 
@@ -64,7 +64,7 @@
 
     /* ---------------------- SENSORES ---------------------- */
     {
-      id:'ard-sen1', modulo:'sensores', titulo:'5.1 · Sensor de luz LDR', nivel:'Fácil', imagen:'imagenes/ldr-sensores.jpg', alt:'Módulos sensores sobre una superficie de madera', electronica:'5 V → LDR → A1 → resistencia de 10 kΩ → GND; LED indicador en D13.', tink:true,
+      id:'ard-sen1', modulo:'sensores', titulo:'5.1 · Sensor de luz LDR', nivel:'Fácil', imagen:'imagenes/tink-5.1-ldr.png', alt:'Captura de Tinkercad: sensor de luz LDR', electronica:'5 V → LDR → A1 → resistencia de 10 kΩ → GND; LED indicador en D13.', tink:true,
       consigna:'Leé el sensor de luz de <code>A1</code> con <code>analogRead(A1)</code>. Si la lectura es menor que 300, encendé el pin 13; si no, apagalo. Enviá el valor por serie con <code>Serial.println()</code>.',
     },
     {
@@ -72,13 +72,13 @@
       consigna:'Incluí <code>DHT.h</code> y declará <code>DHT dht(2, DHT11);</code>. En <code>setup()</code> iniciá el puerto serie y llamá a <code>dht.begin()</code>. En <code>loop()</code> guardá <code>float temperatura = dht.readTemperature()</code>, mostrala por serie con <code>Serial.print()</code> y, si supera 25 grados, encendé el pin 13. Usá <code>delay(1000)</code> entre lecturas. En Tinkercad reemplazá el DHT11 por un TMP36 en A2 y aplicá la fórmula de la nota.',
     },
     {
-      id:'ard-sen3', modulo:'sensores', titulo:'5.3 · Promediar el ultrasónido', nivel:'Difícil', imagen:'imagenes/hc-sr04.jpg', alt:'Sensor ultrasónico HC-SR04', electronica:'VCC a 5 V, GND, TRIG en D9 y ECHO en D10 (con divisor de voltaje en hardware real).', tink:true,
+      id:'ard-sen3', modulo:'sensores', titulo:'5.3 · Promediar el ultrasónido', nivel:'Difícil', imagen:'imagenes/tink-5.3-ultrasonido.png', alt:'Captura de Tinkercad: sensor HC-SR04', electronica:'VCC a 5 V, GND, TRIG en D9 y ECHO en D10 (con divisor de voltaje en hardware real).', tink:true,
       consigna:'Usá el HC-SR04 con <code>TRIG</code> en D9 y <code>ECHO</code> en D10. En <code>setup()</code> configurá D9 como salida y D10 como entrada. En <code>loop()</code>, repetí tres veces con un <code>for</code>: enviá un pulso de 10 µs con <code>digitalWrite()</code> y <code>delayMicroseconds()</code>, medí con <code>pulseIn(10, HIGH)</code> y convertí con <code>duracion * 0.0343 / 2</code>. Sumá las tres distancias en <code>suma</code>, calculá <code>promedio = suma / 3</code>, mostralo por serie y esperá 500 ms.',
     },
 
     /* ---------------------- ROBÓTICA ---------------------- */
     {
-      id:'ard-rob1', modulo:'robotica', titulo:'6.1 · Mover un servo', nivel:'Fácil', imagen:'imagenes/servo-motor.jpg', alt:'Componentes de motor para robótica', electronica:'Señal en D9, 5 V y GND común con la Arduino.', tink:true,
+      id:'ard-rob1', modulo:'robotica', titulo:'6.1 · Mover un servo', nivel:'Fácil', imagen:'imagenes/tink-6.1-servo.png', alt:'Captura de Tinkercad: servomotor en 90 y 180 grados', electronica:'Señal en D9, 5 V y GND común con la Arduino.', tink:true,
       consigna:'En <code>setup()</code> conectá el servo con <code>servo.attach(9)</code>. En <code>loop()</code> movelo a 0 grados, esperá 500 ms, movelo a 180 grados y esperá otros 500 ms.',
     },
     {
@@ -88,6 +88,10 @@
     {
       id:'ard-rob3', modulo:'robotica', titulo:'6.3 · Robot con dos estados', nivel:'Difícil', imagen:'imagenes/robot-sensores.jpg', alt:'Robot con sensores y cableado', electronica:'Botón entre D2 y GND con INPUT_PULLUP; servo con señal en D9, 5 V y GND común.', tink:true,
       consigna:'Usá una variable <code>int estado = 0</code>. En <code>loop()</code> leyé el botón de <code>D2</code> con <code>INPUT_PULLUP</code>. Si está presionado (0) pasá al estado 1; si no, volvé al estado 0. Con <code>if (estado == 1)</code> mové el servo a 135 grados y con <code>else</code> a 45 grados.',
+    },
+    {
+      id:'ard-rob4', modulo:'robotica', titulo:'6.4 · Motor DC con driver L293D', nivel:'Medio', imagen:'imagenes/tink-6.4-dc-motor.png', alt:'Captura de Tinkercad: motor DC con Arduino', electronica:'IN1 en D7, IN2 en D8, ENABLE en D9 con PWM; fuente externa para el motor y GND común con Arduino.', tink:true,
+      consigna:'Configurá D7 y D8 como salidas de dirección y D9 como salida PWM. En <code>loop()</code> poné IN1 en <code>HIGH</code> e IN2 en <code>LOW</code>, aplicá <code>analogWrite(9, 180)</code> durante 2 segundos y frená con <code>analogWrite(9, 0)</code> 1 segundo. Después invertí IN1 e IN2 y repetí otros 2 segundos para que gire al revés. Probá con <code>analogWrite(9, 100)</code> para comparar velocidades.',
     }
   ];
 
